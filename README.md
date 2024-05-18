@@ -1,11 +1,13 @@
 <p align="center">
-  <img alt="iEmo Logo" src="https://api.minio.yyds.pink/halo-docs/2024/05/favicon.png" width="128">
+  <img alt="iEmo Logo" src="https://api.minio.yyds.pink/halo-docs/2024/05/iemo_logo.png" width="128">
 </p>
 
 <p align="center">iEmo是一个简约感设计Halo主题</p>
 <p align="center"><a target="_blank" href="https://github.com/kannafay/iEmo">移植于 wordpress 的 iEmo</a></p>
 
+![ScreenShot](https://api.minio.yyds.pink/moony/files/2024/05/iemo-1.png)
 ![ScreenShot](https://api.minio.yyds.pink/halo-docs/2024/05/iemo.png)
+
 
 ### 预览：[困困鱼](https://demo.kunkunyu.com?preview-theme=theme-iemo)
 

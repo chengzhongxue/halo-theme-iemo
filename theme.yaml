@@ -14,7 +14,7 @@ spec:
         screenshot:
         file: page_links.html
   description: 简约感设计Halo主题
-  logo: "https://www.halo.run/logo"
+  logo: "/themes/theme-iemo/assets/images/logo.png"
   homepage: "https://github.com/chengzhongxue/halo-theme-iemo"
   repo: "https://github.com/chengzhongxue/halo-theme-iemo"
   issues: "https://github.com/chengzhongxue/halo-theme-iemo/issues"
