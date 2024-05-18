@@ -58,4 +58,4 @@ iEmo 主题支持以下 Halo 插件：
 
 
 ### 赞助
-如果 iEmo 对你有帮助，欢迎[赞助我](https://afdian.net/a/moony_la)，感谢以下赞助者对 material 项目的支持：
+如果 iEmo 对你有帮助，欢迎[赞助我](https://afdian.net/a/moony_la)，感谢以下赞助者对 iEmo 项目的支持：
