@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1>标签</h1>
-    <ul>
-      <li th:each="tag : ${tags}">
-        <a
-          th:href="@{${tag.status.permalink}}"
-          th:text="${tag.spec.displayName}"
-        ></a>
-      </li>
-    </ul>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '标签',_footer = ~{::footer},_head = null)}">
+<th:block th:fragment="content">
+  <div class="container tag">
+    <th:block th:replace="~{modules/header}" />
+    <main>
+      <th:block th:replace="~{modules/inc/nav}" />
+      <div class="content">
+        <article>
+          <h2>标签 <span>Tags.</span></h2>
+          <div class="tag-bar">
+            <ul th:with="tags = ${tagFinder.listAll()}">
+              <li th:each="tagItem : ${tags}">
+                <a th:href="@{${tagItem.status.permalink}}" th:text="${tagItem.spec.displayName}"></a>
+              </li>
+            </ul>
+          </div>
+          <div class="tag-box"></div>
+        </article>
+        <th:block th:replace="~{modules/aside}" />
+      </div>
+    </main>
+  </div>
+</th:block>
+<th:block th:fragment="footer">
+  <th:block th:replace="~{modules/inc/ajax/ajax-tag-tpl}" />
+</th:block>
+
 </html>

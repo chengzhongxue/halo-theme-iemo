@@ -1,19 +1,52 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1 th:text="${category.spec.displayName}"></h1>
-    <ul>
-      <li th:each="post : ${posts.items}">
-        <a
-          th:href="@{${post.status.permalink}}"
-          th:text="${post.spec.title}"
-        ></a>
-      </li>
-    </ul>
-    <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
-    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${category.spec.displayName},_footer = ~{::footer},_head = null)}">
+<th:block th:fragment="content">
+  <div class="container category">
+    <th:block th:replace="~{modules/header}" />
+    <main>
+      <th:block th:replace="~{modules/inc/nav}" />
+      <div class="content">
+        <article>
+          <li class="categories">
+            <h2>分类 <span>Categories.</span></h2>
+            <ul th:with="categories = ${categoryFinder.listAll()}">
+              <li th:each="category : ${categories}" class="cat-item">
+                <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+              </li>
+            </ul>
+          </li>
+          <div class="cate-box">
+            <ul>
+              <li th:each="post,iStat : ${posts.items}">
+                <div class="left">
+                  <a th:href="@{${post.status.permalink}}">
+                    <img
+                      th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : post.spec.cover}"
+                      th:src="${img}" alt="">
+                  </a>
+                </div>
+                <div class="right">
+                  <p><a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a></p>
+                  <span><i class="iconfont icon-clock"></i>[[${'
+                    '+#dates.format(post.spec.publishTime,'yyyy年MM月dd日')}]]</span>
+                </div>
+              </li>
+            </ul>
+            <div id="pagination-post" class="pagination" th:if="${posts.hasNext}">
+              <a th:href="@{${posts.nextUrl}}"><i class="iconfont icon-activity"></i> 加载更多文章</a>
+            </div>
+            <div class="pagination-post no-more-post" th:unless="${posts.hasNext}"><a><i
+                  class="iconfont icon-anchor"></i> 好像就这么多</a></div>
+          </div>
+        </article>
+        <th:block th:replace="~{modules/aside}" />
+      </div>
+    </main>
+  </div>
+</th:block>
+<th:block th:fragment="footer">
+  <th:block th:replace="~{modules/inc/ajax/ajax-cate}" />
+</th:block>
+
 </html>

@@ -1,0 +1,39 @@
+<div class="post-part new active">
+    <ul th:with="postItems = ${posts.items}">
+        <li th:each="post,iter : ${postItems}">
+            <div class="left">
+                <a class="cover" th:href="@{${post.status.permalink}}">
+                    <img th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : post.spec.cover}"
+                         th:src="${img}" alt="">
+                </a>
+                <div class="cate-view">
+                    <th:block th:if="${not #lists.isEmpty(post.categories)}">
+                        <a th:each="category,iter : ${post.categories}" 
+                        th:href="@{${category.status.permalink}}" rel="category tag" th:text="${category.spec.displayName}"></a>
+                    </th:block>
+                </div>
+            </div>
+            <div class="right">
+                <div class="text">
+                    <div class="title">
+                        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+                    </div>
+                    <p th:text="${post.status.excerpt}"></p>
+                </div>
+                <div class="post-info">
+                    <div class="time">
+                        <i class="iconfont icon-clock"></i>
+                        <span th:text="${#dates.format(post.spec.publishTime,'yyyy年MM月dd日')}"></span>
+                    </div>
+                    <div class="read-more">
+                        <a th:href="@{${post.status.permalink}}">
+                            <span>阅读更多</span>
+                            <i class="iconfont icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <th:block th:replace="~{modules/inc/ajax/ajax-home}" />
+</div>

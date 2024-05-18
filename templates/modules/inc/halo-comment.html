@@ -1,0 +1,13 @@
+<th:block th:fragment="halo-comment(name,kind,group)" th:if="${haloCommentEnabled}">
+    <link rel="stylesheet" th:href="@{/assets/css/comments.css}">
+    <div class="comments">
+        <div class="take-part-in-comment">
+            <p>参与讨论</p>
+            <p>(Participate in the discussion)</p>
+        </div>
+        <div class="response" id="response">
+            <h3 id="response-title">参与讨论</h3>
+            <halo:comment th:attr="name=${name},kind=${kind},group=${group}" />
+        </div>
+    </div>
+</th:block>

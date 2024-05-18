@@ -1,13 +1,167 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-starter-setting
+  name: theme-iemo-setting
 spec:
   forms:
-    - group: style
-      label: 样式
+    - group: basic
+      label: 基础设置
       formSchema:
-        - $formkit: color
-          name: background_color
-          label: 背景颜色
-          value: "#f2f2f2"
+        - $formkit: checkbox
+          name: iemo_auto_load
+          label: 自动加载内容
+          value: false
+          help: 当页面内容满时滚动到底部自动加载内容
+        - $formkit: select
+          name: iemo_page_animation
+          label: 页面动画
+          value: ""
+          options:
+            - value: ""
+              label: 关闭
+            - value: "Left"
+              label: 从左往右
+            - value: "Right"
+              label: 从右往左
+            - value: "Top"
+              label: 从上往下
+            - value: "Enlarge"
+              label: 放大效果
+        - $formkit: group
+          name: recommend_post
+          label: 推荐文章
+          value:
+            post_show: []
+            iemo_recommend_show: ""
+            iemo_swiper_shownum: "more"
+          children:
+            - $formkit: radio
+              name: iemo_recommend_show
+              id: iemo_recommend_show
+              label: 显示方式（显示在首页顶部）
+              options:
+                - label: 不显示
+                  value: ""
+                - label: 轮播图（最多支持10篇）
+                  value: swiper
+                - label: 固定卡片（最多支持3篇，移动端仅显示第一篇）
+                  value: regular
+            - $formkit: repeater
+              name: post_show
+              if: $get(iemo_recommend_show).value != ""
+              label: 选择文章
+              children:
+                - $formkit: postSelect
+                  name: post
+                  label: 文章
+                  value: ""
+                  validation: required
+            - $formkit: radio
+              name: iemo_swiper_shownum
+              label: 轮播图显示数量
+              help: 轮播图一页显示的数量，多篇为3个，单篇为1个
+              options:
+                - label: 多篇
+                  value: "more"
+                - label: 单篇
+                  value: single
+        - $formkit: number
+          name: iemo_copyright
+          label: 版权号
+          value: 2024
+          help: 填写年份（数字）即可
+        - $formkit: text
+          name: iemo_icp
+          label: ICP备案
+          help: 填写ICP备案号，没有请留空
+        - $formkit: text
+          name: iemo_icp_gov
+          label: 公网安备号
+          help: 填写公网安备号，没有请留空
+        - $formkit: checkbox
+          name: iemo_upyun
+          label: 又拍云联盟
+          value: false          
+
+    - group: sidebar
+      label: 侧栏
+      formSchema:
+        - $formkit: attachment
+          name: iemo_avatar_author
+          label: 个人头像
+          help: 个人资料的头像 
+          value: https://cravatar.cn
+          accepts:
+            - "image/*"
+        - $formkit: attachment
+          name: iemo_cover_author
+          label: 个人背景
+          help: 显示在侧边栏 
+          value: /themes/theme-iemo/assets/images/cover-author.jpg
+          accepts:
+            - "image/*"
+        - $formkit: text
+          name: iemo_name_author
+          label: 个人名称
+          help: 个人资料的名称
+          value: 困困鱼
+        - $formkit: textarea
+          name: iemo_des_author
+          label: 个人描述
+          help: 个人资料的描述
+          value: 这家伙很懒，什么都没写
+        - $formkit: checkbox
+          name: iemo_aside_subpage
+          id: iemo_aside_subpage
+          label: 侧边栏附页
+          value: false
+          help: 可添加内容：菜单、评论、关于
+        - $formkit: checkbox
+          if: $get(iemo_aside_subpage).value
+          name: iemo_aside_comments
+          id: iemo_aside_comments
+          label: 侧边栏附页-评论
+          value: false
+          help: 开启附页最新评论
+        - $formkit: number
+          if: $get(iemo_aside_comments).value
+          name: iemo_aside_comments_num
+          label: 最大展示条数
+          value: 6
+          help: 显示最新评论数量（1~100），默认6条
+        - $formkit: code
+          name: iemo_about
+          label: 侧边栏附页-关于
+          height: 200px
+          language: html
+          help: 位于侧边栏附页，填写文本，可用于对博客或自己的介绍等
+        - $formkit: repeater
+          name: socialMedia
+          label: 社交媒体
+          value: [ ]
+          children:
+            - $formkit: text
+              name: icon
+              label: 图标
+            - $formkit: text
+              name: name
+              label: 名称
+            - $formkit: url
+              name: url
+              label: 链接
+
+    - group: post
+      label: 文章
+      formSchema:
+        - $formkit: attachment
+          name: iemo_cover_post
+          label: 文章默认封面
+          value: /themes/theme-iemo/assets/images/random/cover-post-1.jpg
+          accepts:
+            - "image/*"
+        - $formkit: checkbox
+          name: iemo_toc
+          label: 文章目录Toc
+          value: true
+        
+    

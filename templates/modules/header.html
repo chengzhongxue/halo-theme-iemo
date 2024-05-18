@@ -1,0 +1,23 @@
+<header class="">
+    <div class="logo">
+        <a href="/"><img th:src="${site.logo}" alt=""></a>
+    </div>
+    <div class="menu">
+        <ul class="menu" th:with="topMenu = ${menuFinder.getPrimary()}">
+            <th:block th:each="menuItem,iterStat : ${topMenu.menuItems}">
+                <li th:id="|menu-item-${menuItem.metadata.name}|" class="menu-item"
+                    th:with="icon = ${#annotations.getOrDefault(menuItem, 'icon', '')}">
+                    <a title="" th:href="@{${menuItem.status.href}}" aria-current="page">
+                        <th:block th:if="${not #strings.isEmpty(icon)}">
+                            <span  th:class="${icon}"></span>
+                            <span class="menu-item-title" th:text="${menuItem.status.displayName}"></span>
+                        </th:block>
+                        <th:block th:unless="${not #strings.isEmpty(icon)}" th:text="${menuItem.status.displayName}">
+                        </th:block>
+                    </a>
+                </li>
+            </th:block>
+
+        </ul>
+    </div>
+</header>

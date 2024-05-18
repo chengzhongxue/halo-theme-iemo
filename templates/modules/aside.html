@@ -1,0 +1,80 @@
+<aside class="">
+    <div class="aside-content">
+        <div class="aside-page main-page active">
+            <div class="author">
+                <div class="cover">
+                    <img th:with="img = ${#strings.isEmpty(theme.config.sidebar.iemo_cover_author) ? '/themes/theme-iemo/assets/images/cover-author.jpg' : theme.config.sidebar.iemo_cover_author}"
+                        th:src="${img}" alt="">
+                </div>
+                <div class="author-info">
+                    <div class="avatar">
+                        <img th:src="${theme.config.sidebar.iemo_avatar_author}">
+                    </div>
+                    <div class="name" th:text="${theme.config.sidebar.iemo_name_author}"></div>
+                    <div class="des" th:text="${theme.config.sidebar.iemo_des_author}"></div>
+                    <div class="post-info" th:with="stats = ${siteStatsFinder.getStats()}">
+                        <div class="posts">
+                            <i>文章</i>
+                            <span th:text="${stats.post}"></span>
+                        </div>
+                        <div class="tags" th:with="tags = ${tagFinder.listAll()}">
+                            <i>标签</i>
+                            <span th:text="${tags.size}"></span>
+                        </div>
+                        <div class="notes" th:if="${pluginFinder.available('PluginMoments')}"
+                            th:with=" moment = ${momentFinder.listAll()}">
+                            <i>说说</i>
+                            <span th:text="${moment.size()}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${theme.config.sidebar.iemo_aside_subpage}" class="aside-btn-open">查看更多<i
+                        class="iconfont icon-chevron-right"></i></div>
+            </div>
+            <th:block th:if="${theme.config.post.iemo_toc}">
+                <div class="toc">
+                    <h2>目录 <span>Toc.</span></h2>
+                    <ul></ul>
+                </div>
+            </th:block>
+            <th:block th:if="${not #lists.isEmpty(theme.config.sidebar.socialMedia)}"
+                th:with="socialMedias = ${theme.config.sidebar.socialMedia}">
+                <div class="social">
+                    <h2>社交 <span>Social.</span></h2>
+                    <div class="social-content">
+                        <ul class="menu">
+                            <li class="menu-item" th:each="socialMedia : ${socialMedias}">
+                                <a th:title="${socialMedia.name}" target="_blank" rel="noopener"
+                                    th:href="${socialMedia.url}">
+                                    <span th:class="${socialMedia.icon}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </th:block>
+            <th:block th:if="${pluginFinder.available('PluginMoments') && not #lists.isEmpty(momentFinder.listAll())}">
+                <div class="notes-box">
+                    <h2>说说 <span>Notes.</span></h2>
+                    <ul>
+                        <li th:each="moment : ${momentFinder.listAll()}" th:with="content=${moment.spec.content}">
+                            <div class="notes-content">
+                                <p th:utext="${content.raw}"></p>
+                            </div>
+
+                            <div class="notes-info">
+                                <div class="time">
+                                    <span th:text="${#dates.format(moment.spec.releaseTime,'yyyy年MM月dd日')}"></span>
+                                </div>
+                            </div>
+                            <div class="view-detail"><a th:href="${'/moments/'+moment.metadata.name}">查看详情</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </th:block>
+        </div>
+        <th:block th:replace="~{modules/inc/aside-sub-page}" />
+    </div>
+    <th:block th:replace="~{modules/footer}" />
+</aside>

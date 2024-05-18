@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="layout(_content,_title,_footer)"
+  th:with="site_title = ${not #strings.isEmpty(_title) ?  _title+' - '+site.title  :  #strings.isEmpty(site.subtitle) ? site.title :  site.title +' - ' +site.subtitle }">
+
+<head th:replace="~{modules/head :: head}"></head>
+
+<body>
+  <th:block th:replace="${_content}" />
+  <th:block th:replace="~{modules/foot}" />
+  <th:block th:if="${_footer != null}">
+    <th:block th:replace="${_footer}" />
+  </th:block>
+</body>

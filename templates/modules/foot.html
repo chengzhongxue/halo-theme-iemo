@@ -1,0 +1,10 @@
+<script th:src="@{/assets/js/theme.js?v={version}(version=${theme.spec.version})}"></script>
+<script th:src="@{/assets/static/nprogress/nprogress.js}"></script>
+<script>
+    NProgress.start();
+    $(document).ready(() => {
+        NProgress.done();
+    });
+    NProgress.remove();
+</script>
+<th:block th:replace="~{'modules/variables/configs'}"/>

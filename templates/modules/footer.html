@@ -1,0 +1,16 @@
+<footer>
+  <div class="copyright">
+    <p>
+      Copyright © [[${#strings.isEmpty(theme.config.basic.iemo_copyright) ? '2024' : theme.config.basic.iemo_copyright}]]
+      <a href="/" th:text="${site.title}"></a>
+    </p>
+    <p th:if="${not #strings.isEmpty(theme.config.basic.iemo_icp)}"><a href="https://beian.miit.gov.cn" target="_blank" th:text="${theme.config.basic.iemo_icp}"></a></p>
+    <p th:if="${not #strings.isEmpty(theme.config.basic.iemo_icp_gov)}">
+      <a th:href="|https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${theme.config.basic.iemo_icp_gov}|" 
+      target="_blank" 
+      th:text="${theme.config.basic.iemo_icp_gov}"></a>
+    </p>
+    <p th:if="${theme.config.basic.iemo_upyun}">本站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">
+      <img src="'.fileUri().'/assets/images/upyun.png" style="vertical-align: middle;height: 26px;margin-top: -3px;"></a>提供CDN加速/云存储服务</p>
+  </div>
+</footer>

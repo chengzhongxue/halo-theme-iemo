@@ -1,21 +1,27 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-starter
+  name: theme-iemo
 spec:
-  displayName: Theme Starter
+  displayName: iEmo
   author:
-    name: Halo
-    website: "https://github.com/halo-dev"
-  description: Halo 2.0 Theme base on Thymeleaf
+    name: 困困鱼
+    website: "https://github.com/chengzhongxue"
+  customTemplates:
+    page:
+      - name: 友情链接页面模版
+        description: 支持可预设文本的友链
+        screenshot:
+        file: page_links.html
+  description: 简约感设计Halo主题
   logo: "https://www.halo.run/logo"
-  homepage: "https://github.com/halo-dev/theme-starter#readme"
-  repo: "https://github.com/halo-dev/theme-starter"
-  issues: "https://github.com/halo-dev/theme-starter/issues"
-  settingName: "theme-starter-setting"
-  configMapName: "theme-starter-configMap"
+  homepage: "https://github.com/chengzhongxue/halo-theme-iemo"
+  repo: "https://github.com/chengzhongxue/halo-theme-iemo"
+  issues: "https://github.com/chengzhongxue/halo-theme-iemo/issues"
+  settingName: "theme-iemo-setting"
+  configMapName: "theme-iemo-configMap"
   version: "1.0.0"
-  requires: ">=2.0.0"
+  requires: ">=2.15.0"
   license:
-    - name: "GPL-3.0"
-      url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
+    - name: "MIT License"
+      url: "https://github.com/chengzhongxue/halo-theme-iemo/blob/main/LICENSE"

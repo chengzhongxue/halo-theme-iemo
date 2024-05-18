@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <th:block th:each="archive : ${archives.items}">
-      <h1 th:text="${archive.year}"></h1>
-      <ul class="listing">
-        <th:block th:each="month : ${archive.months}">
-          <li th:each="post : ${month.posts}">
-            <a
-              th:href="@{${post.status.permalink}}"
-              th:title="${post.spec.title}"
-              th:text="${post.spec.title}"
-            ></a>
-          </li>
-        </th:block>
-      </ul>
-    </th:block>
-    <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">
-      上一页
-    </a>
-    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">下一页</a>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '归档',_footer =null,_head = null)}">
+<th:block th:fragment="content">
+  <div class="container archive">
+    <th:block th:replace="~{modules/header}" />
+    <main>
+      <th:block th:replace="~{modules/inc/nav}" />
+      <div class="content">
+        <article>
+          <h2>分类 <span>Archives.</span></h2>
+          <div class="archive-box">
+            <ul>
+              <th:block th:each="archive : ${archives.items}">
+                <th:block th:each="month : ${archive.months}">
+                  <h3>[[${archive.year}]]年[[${month.month}]]月</h3>
+                  <li th:each="post : ${month.posts}">
+                    <span>〔[[${#dates.format(post.spec.publishTime,'dd')}]]日〕</span>
+                    <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+                  </li>
+                  <li></li>
+                </th:block>
+              </th:block>
+            </ul>
+          </div>
+        </article>
+        <th:block th:replace="~{modules/aside}" />
+      </div>
+    </main>
+  </div>
+</th:block>
+
 </html>

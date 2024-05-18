@@ -1,0 +1,234 @@
+<th:block
+    th:if="${theme.config.basic.recommend_post.iemo_recommend_show == 'swiper' && not #strings.isEmpty(theme.config.basic.recommend_post.post_show)}"
+    th:with="post_show = ${theme.config.basic.recommend_post.post_show}">
+    <th:block th:if="${post_show.size()>1 && theme.config.basic.recommend_post.iemo_swiper_shownum == 'single'}">
+        <style>
+            .home article .top .swiper {
+                height: 340px;
+                padding-top: 0;
+                overflow: hidden;
+                transition: height 0s;
+            }
+    
+            .home article .top .swiper-slide {
+                transform: scale(1);
+            }
+    
+            .home article .top .swiper-slide a .swiper-post-info h2 {
+                font-size: 16px;
+                transition: font-size 0s;
+            }
+    
+            .home article .top .swiper-button-prev {
+                left: 20px;
+            }
+    
+            .home article .top .swiper-button-next {
+                right: 20px;
+            }
+    
+            .home article .top .swiper-slide a .swiper-post-info {
+                padding: 0 30px 30px 30px;
+                transition: padding 0s;
+            }
+    
+            @media screen and (max-width: 700px) {
+                .home article .top .swiper {
+                    height: 280px;
+                }
+            }
+    
+            @media screen and (max-width: 600px) {
+                .home article .top .swiper {
+                    height: 220px;
+                }
+    
+                .home article .top .swiper-slide a .swiper-post-info {
+                    padding: 0 20px 20px 20px;
+                    transition: all 0s;
+                }
+    
+                .home article .top .swiper-slide a .swiper-post-info h2 {
+                    font-size: 15px;
+                    transition: all 0s;
+                }
+            }
+        </style>
+        <script>
+            let spaceBetween = 20;
+            let slidesPerView = 1;
+            let breakpoints = {};
+            let autoplay = {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            };
+        </script>
+    </th:block>
+
+    <th:block th:unless="${post_show.size()>1 && theme.config.basic.recommend_post.iemo_swiper_shownum == 'single'}">
+        <th:block th:if="${post_show.size() == 1}">
+              <style>
+                .home article .top .swiper {
+                  height: 300px;
+                  border-radius: 8px;
+                  overflow: hidden;
+                  padding: 0;
+                  margin-bottom: 5px;
+                  transition: height 0s;
+                }
+                .home article .top .swiper-slide a .swiper-post-info h2 {
+                  font-size: 16px;
+                  transition: font-size 0s;
+                }
+                .home article .top .swiper-button-prev, 
+                .home article .top .swiper-button-next {
+                  margin-top: 0;
+                }
+                .home article .top .swiper-button-prev {
+                  left: 20px;
+                }
+                .home article .top .swiper-button-next {
+                  right: 20px;
+                }
+                .home article .top .swiper-slide a .swiper-post-info {
+                  padding: 0 30px 30px 30px;
+                  transition: padding 0s;
+                }
+                @media screen and (max-width: 700px) {
+                  .home article .top .swiper {
+                    height: 240px;
+                  }
+                }
+                @media screen and (max-width: 600px) {
+                  .home article .top .swiper {
+                    height: 180px;
+                    margin-bottom: 15px;
+                  }
+                  .home article .top .swiper-slide a .swiper-post-info {
+                    padding: 0 20px 20px 20px;
+                    transition: all 0s;
+                  }
+                  .home article .top .swiper-slide a .swiper-post-info h2 {
+                    font-size: 15px;
+                    transition: all 0s;
+                  }
+                }
+              </style>
+              <script>
+                let spaceBetween = 20;
+                let slidesPerView = 1;
+                let breakpoints = {};
+                let autoplay = false;
+              </script>
+        </th:block>
+        <th:block th:if="${post_show.size() == 2}">
+            <style>
+                .home article .top .swiper {
+                  height: 300px;
+                  transition: height 0s;
+                }
+                @media screen and (max-width: 800px) {
+                  .home article .top .swiper {
+                    height: 280px;
+                  }
+                }
+                @media screen and (max-width: 700px) {
+                  .home article .top .swiper {
+                    height: 250px;
+                  }
+                }
+                @media screen and (max-width: 600px) {
+                  .home article .top .swiper {
+                    height: 220px;
+                  }
+                }
+              </style>
+              <script>
+                let spaceBetween = 20;
+                let slidesPerView = 1;
+                let breakpoints = {
+                  500: {
+                    slidesPerView: 2,
+                    spaceBetween: -10,
+                  },
+                };
+                let autoplay = {
+                  delay: 4000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                };
+              </script>
+        </th:block>
+        <th:block th:if="${post_show.size() >= 3}">
+            <script>
+                let spaceBetween = 20;
+                let slidesPerView = 1;
+                let breakpoints = {
+                  500: {
+                    slidesPerView: 2,
+                    spaceBetween: 0,
+                  },
+                  800: {
+                    slidesPerView: 3,
+                    spaceBetween: 0,
+                  },
+                };
+                let autoplay = {
+                  delay: 4000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                };
+            </script>
+        </th:block>
+        
+    </th:block>
+
+    <link rel="stylesheet" th:href="@{/assets/static/swiper/swiper-bundle.min.css}">
+    <div class="top">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <th:block th:each="postShow,iter : ${post_show}">
+                    <div class="swiper-slide" th:with="post = ${postFinder.getByName(postShow.post)}">
+                        <a th:href="@{${post.status.permalink}}">
+                            <img th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : post.spec.cover}"
+                             th:src="${img}" alt="">
+                            <div class="swiper-post-info">
+                                <h2 th:text="${post.spec.title}"></h2>
+                            </div>
+                        </a>
+                    </div>
+                </th:block>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <script th:src="@{/assets/static/swiper/swiper-bundle.min.js}"></script>  
+        <script>
+        var swiper = new Swiper('.swiper', {
+            loop: true,
+            spaceBetween: spaceBetween,
+            slidesPerView: slidesPerView,
+            breakpoints: breakpoints,
+            centeredSlides: true,
+            speed: 500,
+            autoplay: autoplay,
+            pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            type: 'bullets',
+            },
+            navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+            },
+        });
+        $(document).ready(()=> {
+            $('.home article .top .swiper-slide').css('transition','all .5s');
+        })
+        </script>
+    </div>
+
+
+</th:block>

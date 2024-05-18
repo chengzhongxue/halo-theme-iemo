@@ -1,0 +1,72 @@
+<div class="aside-page sub-page">
+    <div class="author">
+        <div class="cover">
+            <img th:src="${theme.config.sidebar.iemo_cover_author}" alt="">
+        </div>
+        <div class="author-info-sub">
+            <div class="avatar">
+                <img th:src="${theme.config.sidebar.iemo_avatar_author}">
+            </div>
+            <div class="author-name">
+                <div class="name" th:text="${theme.config.sidebar.iemo_name_author}"></div>
+                <div class="des" th:text="${theme.config.sidebar.iemo_des_author}"></div>
+            </div>
+        </div>
+        <div class="aside-btn-close"><i class="iconfont icon-chevron-left"></i>返回</div>
+    </div>
+    <th:block th:with="leftMenu = ${menuFinder.getPrimary()}">
+        <div class="menu_sidebar_box" th:if="${not #lists.isEmpty(leftMenu)}">
+            <h2>菜单 <span>Menus.</span></h2>
+            <div class="menu_sidebar">
+                <ul class="menu">
+                    <th:block th:each="menuItem,iterStat : ${leftMenu.menuItems}">
+                        <li th:id="|menu-item-${iterStat.count}|" class="menu-item"
+                            th:classappend="${ not #lists.isEmpty(menuItem.children) ? 'menu-item-has-children' : ''}"
+                            th:with="icon = ${#annotations.getOrDefault(menuItem, 'icon', '')}">
+                            <a title="" th:href="@{${menuItem.status.href}}" aria-current="page">
+                                <th:block th:if="${not #strings.isEmpty(icon)}">
+                                    <span th:class="${icon}"></span>
+                                    <span class="menu-item-title" th:text="${menuItem.status.displayName}"></span>
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(icon)}"
+                                    th:text="${menuItem.status.displayName}">
+                                </th:block>
+                            </a>
+                            <ul class="sub-menu" th:if="${not #lists.isEmpty(menuItem.children)}">
+                                <li class="menu-item" th:each="childMenu : ${menuItem.children}">
+                                    <a th:with="icon = ${#annotations.getOrDefault(childMenu, 'icon', '')}"
+                                        th:href="@{${childMenu.status.href}}" th:text="${childMenu.status.displayName}">
+                                        <th:block th:if="${not #strings.isEmpty(icon)}">
+                                            <span th:class="${icon}"></span>
+                                            <span class="menu-item-title"
+                                                th:text="${menuItem.status.displayName}"></span>
+                                        </th:block>
+                                        <th:block th:unless="${not #strings.isEmpty(icon)}"
+                                            th:text="${menuItem.status.displayName}">
+                                        </th:block>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+        <script>
+            $('.menu_sidebar > ul > li.menu-item-has-children > a').append('<span class="iconfont icon-chevron-down arrow"></span>');
+        </script>
+    </th:block>
+    <th:block th:if="${theme.config.sidebar.iemo_aside_comments}">
+        <div class="new-comments">
+            <h2>评论 <span>Comments.</span></h2>
+            <th:block th:replace="~{modules/inc/aside-comments}" />
+        </div>
+    </th:block>
+    <th:block th:if="${not #strings.isEmpty(theme.config.sidebar.iemo_about)}">
+        <div class="about">
+            <h2>关于 <span>About.</span></h2>
+            <p th:utext="${theme.config.custom.head_html}"></p>
+        </div>
+    </th:block>
+
+</div>

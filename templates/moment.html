@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+    th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${site.title},_footer = ~{::footer},_head = ~{::head})}">
+<th:block th:fragment="head">
+    <link rel="stylesheet" th:href="@{/assets/css/single.css?v={version}(version=${theme.spec.version})}">
+    <link rel="stylesheet" th:href="@{/assets/static/fancybox/fancybox.css}">
+</th:block>
+<th:block th:fragment="content">
+    <div class="container single">
+        <th:block th:replace="~{modules/header}" />
+        <main>
+            <th:block th:replace="~{modules/inc/nav}" />
+            <div class="content">
+                <article>
+                    <div class="post-cover">
+                        <div class="cover">
+                            <img class="color-thief"
+                                src="https://iemo.onll.cn/wp-content/themes/iEmo/assets/images/random/cover-post-1.jpg"
+                                alt="" crossorigin="anonymous" style="display:none">
+                            <img src="https://iemo.onll.cn/wp-content/themes/iEmo/assets/images/random/cover-post-1.jpg"
+                                style="opacity: 1; animation: 0.5s ease 0s 1 normal forwards running FadeIn-Left;">
+                        </div>
+                        <div class="shortcuts">
+                            <a th:if="${haloCommentEnabled}" class="to-comment"><i
+                                    class="iconfont icon-message-circle"></i>参与讨论</a>
+                        </div>
+                        <div class="post-info">
+                            <div class="title">
+                                <h2 th:title="${site.title}" th:text="${site.title}"></h2>
+                            </div>
+                            <div class="more">
+                                <div class="time">
+                                    <i class="iconfont icon-clock"></i>
+                                    <span th:text="${#dates.format(moment.spec.releaseTime,'yyyy年MM月dd日 HH:mm')}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-content" th:with="content=${moment.spec.content}">
+                        <th:block th:utext="${content.html}"></th:block>
+                        <div class="center">
+                            <th:block th:if="${not #lists.isEmpty(content.medium)}">
+                                <div th:class="|moment-media medium-${content.medium.size}|">
+                                    <th:block th:each="media : ${content.medium}">
+                                        <div class="moment-media-item">
+                                            <img th:if="${#strings.equals(media.type,'PHOTO')}"
+                                                class="rounded-lg " th:src="${media.url}" loading="lazy">
+                                            <video th:if="${#strings.equals(media.type,'VIDEO')}"
+                                                th:src="${media.url}" width="100%" height="auto"
+                                                controls="true"></video>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                    <th:block
+                        th:replace="~{modules/inc/halo-comment :: halo-comment(name=${moment.metadata.name},kind='Moment',group='moment.halo.run')}">
+                    </th:block>
+                </article>
+                <th:block th:replace="~{modules/aside}" />
+            </div>
+        </main>
+    </div>
+</th:block>
+
+<th:block th:fragment="footer">
+    <script>
+        let postImg = document.querySelectorAll('.post-content img');
+        if (postImg) {
+            let postImgUrl = [];
+            $(postImg).each(function (i) {
+                postImgUrl[i] = $('<a data-fancybox="gallery"></a>').attr('href', $(postImg[i]).attr('src'));
+                postImg[i].parentNode.replaceChild($(postImgUrl[i])[0], postImg[i]);
+                $(postImg[i]).appendTo($(postImgUrl[i])[0]);
+            })
+        }
+    </script>
+    <script th:src="@{/assets/static/fancybox/fancybox.umd.js}"></script>
+</th:block>
+
+</html>

@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1 th:text="${singlePage.spec.title}"></h1>
-    <article th:utext="${singlePage.content.content}"></article>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${singlePage.spec.title},_footer = ~{::footer},_head = ~{::head})}">
+<th:block th:fragment="head">
+  <link rel="stylesheet" th:href="@{/assets/css/single.css?v={version}(version=${theme.spec.version})}">
+  <link rel="stylesheet" th:href="@{/assets/static/fancybox/fancybox.css}">
+</th:block>
+<th:block th:fragment="content">
+  <div class="container single">
+    <th:block th:replace="~{modules/header}" />
+    <main>
+      <th:block th:replace="~{modules/inc/nav}" />
+      <div class="content">
+        <article>
+          <div class="post-cover">
+            <div class="cover" th:with="cover = ${not #strings.isEmpty(singlePage.spec.cover) ? singlePage.spec.cover : theme.config.post.iemo_cover_post}">
+              <th:block th:if="${not #strings.isEmpty(cover)}">
+                <img class="thumbnail_loading" th:src="@{/assets/images/loading.gif}" alt="">
+                <img th:src="${cover}" alt="">
+                <img class="color-thief" th:src="${cover}" alt="" crossorigin="anonymous" style="display:none">
+                <script th:inline="javascript">
+                  const imgELem2 = $('.single .post-cover .cover img:eq(1)');
+                  if (imgELem2[0].complete) {
+                    $('.single .post-cover .cover img:first').remove();
+                    if([(${not #strings.isEmpty(theme.config.basic.iemo_page_animation)})]) {
+                      imgELem2.css('animation', 'FadeIn-[(${theme.config.basic.iemo_page_animation})] .5s forwards');
+                    }
+                  } else {
+                      imgELem2.css('opacity', '0');
+                      imgELem2.on('load', function () {
+                        $('.single .post-cover .cover img:first').remove();
+                        if([(${not #strings.isEmpty(theme.config.basic.iemo_page_animation)})]) {
+                          $(this).css('animation', 'FadeIn-[(${theme.config.basic.iemo_page_animation})] .5s forwards');
+                        }
+                        $(this).css('opacity', '1');
+                      });
+                    }
+                </script>
+              </th:block>
+              <th:block th:unless="${not #strings.isEmpty(cover)}">
+                <img class="get_img_url" th:src="@{/assets/images/loading.gif}" alt="">
+                <img class="color-thief" src="" alt="" crossorigin="anonymous" style="display:none">
+              </th:block>
+            </div>
+            <div class="shortcuts">
+              <a th:if="${haloCommentEnabled}" class="to-comment"><i class="iconfont icon-message-circle"></i>参与讨论</a>
+            </div>
+            <div class="post-info">
+              <div class="title">
+                <h2 th:title="${singlePage.spec.title}" th:text="${singlePage.spec.title}"></h2>
+              </div>
+              <div class="more">
+                <div class="time">
+                  <i class="iconfont icon-clock"></i>
+                  <span th:text="${#dates.format(singlePage.spec.publishTime,'yyyy年MM月dd日 HH:mm')}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <th:block th:utext="${singlePage.content.content}"></th:block>
+            <script>
+              $('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').each(function() {
+                $(this).html($('<span>').append($(this).text()))
+              })
+            </script>
+          </div>
+          <th:block th:replace="~{modules/inc/halo-comment :: halo-comment(name=${singlePage.metadata.name},kind='SinglePage',group='content.halo.run')}"></th:block>
+        </article>
+        <th:block th:replace="~{modules/aside}" />
+      </div>
+    </main>
+  </div>
+</th:block>
+
+<th:block th:fragment="footer" th:with="cover = ${singlePage.spec.cover}">
+  <script>
+    let postImg = document.querySelectorAll('.post-content img');
+    if (postImg) {
+      let postImgUrl = [];
+      $(postImg).each(function (i) {
+        postImgUrl[i] = $('<a data-fancybox="gallery"></a>').attr('href', $(postImg[i]).attr('src'));
+        postImg[i].parentNode.replaceChild($(postImgUrl[i])[0], postImg[i]);
+        $(postImg[i]).appendTo($(postImgUrl[i])[0]);
+      })
+    }
+  </script>
+  <script th:src="@{/assets/static/fancybox/fancybox.umd.js}"></script>
+</th:block>
+
 </html>
