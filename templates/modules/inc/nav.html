@@ -10,11 +10,11 @@
             <span class="iconfont icon-menu" id="user-menu-btn"></span>
             <div class="user-menu-box">
                 <ul>
-                    <li><a href="/console/posts"><i class="iconfont icon-edit"></i> 发布新文章</a></li>
-                    <li><a href="/console/moments"><i class="iconfont icon-edit-"></i> 发布新说说</a></li>
+                    <li><a id="postsEdit" href="/console/posts"><i class="iconfont icon-edit"></i> 发布新文章</a></li>
+                    <li><a id="momentsEdit" href="/console/moments"><i class="iconfont icon-edit-"></i> 发布新说说</a></li>
                     <li><a href="/console"><i class="iconfont icon-settings"></i> 后台设置</a></li>
                     <li><a href="/uc/profile"><i class="iconfont icon-settings"></i> 个人资料</a></li>
-                    <li><a href="" class="logout"><i class="iconfont icon-power"></i> 登出账户</a></li>
+                    <li><a onclick="logout()" class="logout"><i class="iconfont icon-power"></i> 登出账户</a></li>
                 </ul>
             </div>
         </th:block>

@@ -44,10 +44,10 @@
               </th:block>
             </div>
             <div class="shortcuts">
-              <a sec:authorize="isAuthenticated()"
-                th:href="${'/console/posts/editor?name='+post.metadata.name+'&returnToView=true'}">
-                <i class="iconfont icon-edit"></i>编辑
-              </a>
+<!--              <a sec:authorize="isAuthenticated()"-->
+<!--                th:href="${'/console/posts/editor?name='+post.metadata.name+'&returnToView=true'}">-->
+<!--                <i class="iconfont icon-edit"></i>编辑-->
+<!--              </a>-->
               <a th:if="${haloCommentEnabled}" class="to-comment"><i class="iconfont icon-message-circle"></i>参与讨论</a>
             </div>
             <div class="post-info">

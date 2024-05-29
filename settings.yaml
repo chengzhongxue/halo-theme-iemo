@@ -163,5 +163,14 @@ spec:
           name: iemo_toc
           label: 文章目录Toc
           value: true
+    - group: moment
+      label: 瞬间
+      formSchema:
+        - $formkit: attachment
+          name: iemo_cover_moment
+          label: 封面
+          value: /themes/theme-iemo/assets/images/random/cover-post-1.jpg
+          accepts:
+            - "image/*"
         
     

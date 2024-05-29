@@ -226,3 +226,71 @@ $('.menu ul li a').each((i, e) => {
 		e.parentElement.classList.add('current-menu-item')
 	}
 })
+
+function logout() {
+  fetch('/logout', {
+    method: 'POST',
+    headers: {
+      'X-Xsrf-Token':
+          document.cookie
+              .split('; ')
+              .find((row) => row.startsWith('XSRF-TOKEN'))
+              ?.split('=')[1] || '',
+    }
+  })
+      .then(response => {
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          console.error('Logout failed:', response.status);
+        }
+      })
+      .catch(error => {
+        console.error('Network error:', error);
+      });
+}
+
+//处理瞬间权限
+async function role() {
+  const response = await fetch(`/apis/api.console.halo.run/v1alpha1/users/-`);
+  const data = await response.json();
+  var roles = data.roles;
+
+  if(roles.length>0) {
+    var name = roles[0].metadata.name
+    if(name != 'super-role') {
+      let dependencies = roles[0].metadata.annotations["rbac.authorization.halo.run/dependencies"]
+      const disallowAccessConsole = roles[0].metadata.annotations["rbac.authorization.halo.run/disallow-access-console"]
+      if(dependencies != undefined) {
+        const momentsRole = ["role-template-moments-manage"]
+        const momentsResult = momentsRole.some(r => dependencies.includes(r));
+        const momentsRoleUc = ["role-template-moments-manage","role-template-uc-moments-publish"]
+        const momentsResultUc = momentsRoleUc.some(r => dependencies.includes(r));
+        const postRolesUc = ["role-template-post-author","role-template-post-publisher","role-template-post-contributor"]
+        const postResultUc = postRolesUc.some(r => dependencies.includes(r));
+        const postRoles = ["role-template-manage-posts"]
+        const postResult = postRoles.some(r => dependencies.includes(r));
+        if (momentsResult == false || disallowAccessConsole == true) {
+          if (!momentsResultUc) {
+            $('#momentsEdit').remove();
+          }else {
+            $('#momentsEdit')[0].href = '/uc/moments'
+          }
+        }
+        if (postResult == false || disallowAccessConsole == true) {
+          if (!postResultUc) {
+            $('#postsEdit').remove();
+          }else {
+            $('#postsEdit')[0].href = '/uc/posts'
+          }
+        }
+      }else {
+        $('#postsEdit').remove();
+        $('#momentsEdit').remove();
+      }
+    }
+  }
+}
+
+
+role();
