@@ -84,7 +84,8 @@ img,video {
 .archive *,
 .link *,
 .note *,
-.single * {
+.single *,
+.douban *{
   -webkit-transition: all var(--tr3), height 0s;
   transition: all var(--tr3), height 0s;
 }
@@ -2173,7 +2174,8 @@ footer .copyright p {
 .archive main .content article>h2,
 .search main .content article h2,
 .note main .content article>h2,
-.link main .content article>h2 {
+.link main .content article>h2,
+.douban main .content article>h2{
   font-size: 28px;
   color: #333;
   margin-bottom: 20px;
@@ -2185,7 +2187,8 @@ footer .copyright p {
 .archive main .content article>h2 span,
 .search main .content article h2 span,
 .note main .content article>h2 span,
-.link main .content article>h2 span {
+.link main .content article>h2 span,
+.douban main .content article>h2 span{
   font-weight: 400;
   font-size: 14px;
   color: #999;
@@ -2431,21 +2434,6 @@ footer .copyright p {
   color: #333;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* link */
 .link main .content article .link-box ul {
   width: 100%;
@@ -2561,17 +2549,6 @@ main .content aside .toc ul li a:active,
 .comments .response .comment-component .comment-btns .cancal:active {
   border: 1px solid #dd24243a !important;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @media screen and (max-width: 1400px) {
   .container {
@@ -2775,21 +2752,6 @@ main .content aside .toc ul li a:active,
     color: #333;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media screen and (max-width: 700px) {
 
@@ -3035,7 +2997,8 @@ main .content aside .toc ul li a:active,
   .archive main .content article>h2,
   .search main .content article h2,
   .note main .content article>h2,
-  .link main .content article>h2 {
+  .link main .content article>h2,
+  .douban main .content article>h2{
     font-size: 24px;
   }
 
@@ -3045,7 +3008,8 @@ main .content aside .toc ul li a:active,
   .archive main .content article>h2 span,
   .search main .content article h2 span,
   .note main .content article>h2 span,
-  .link main .content article>h2 span {
+  .link main .content article>h2 span,
+  .douban main .content article>h2 span{
     font-size: 12px;
   }
 

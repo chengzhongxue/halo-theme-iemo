@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-    th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${site.title},_footer = ~{::footer},_head = ~{::head})}">
+    th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '说说',_footer = ~{::footer},_head = ~{::head})}">
 <th:block th:fragment="head">
     <link rel="stylesheet" th:href="@{/assets/css/single.css?v={version}(version=${theme.spec.version})}">
     <link rel="stylesheet" th:href="@{/assets/static/fancybox/fancybox.css}">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="post-info">
                             <div class="title">
-                                <h2 th:title="${site.title}" th:text="${site.title}"></h2>
+                                <h2 title="说说">说说</h2>
                             </div>
                             <div class="more">
                                 <div class="time">
