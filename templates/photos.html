@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title + ' - ' + site.title}"></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" th:href="@{/assets/lens/css/main.css?v={version}(version=${theme.spec.version})}" />
+    <link rel="shortcut icon" th:href="${site.favicon}">
+    <noscript>
+        <link rel="stylesheet" th:href="@{/assets/lens/css/noscript.css?v={version}(version=${theme.spec.version})}" />
+    </noscript>
+</head>
+
+<body class="is-preload-0 is-preload-1 is-preload-2">
+<!-- Main -->
+<div id="main">
+    <!-- Header -->
+    <header id="header">
+        <h1 th:text="${title}"></h1>
+    </header>
+    <section id="thumbnails">
+        <article th:each="photo,iter : ${photoFinder.listAll()}">
+            <a class="thumbnail" th:href="${photo.spec.url}">
+                <img class="lazyload" th:data-src="${photo.spec.url}" src="/themes/theme-iemo/assets/images/loading.gif" alt=""></a>
+            <h2 th:text="${photo.spec.displayName}"></h2>
+            <p th:if="${not #strings.isEmpty(photo.spec.description)}" th:text="${photo.spec.description}"></p>
+        </article>
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright" th:with="copyright = ${#strings.isEmpty(theme.config.basic.iemo_copyright) ? '2024' : theme.config.basic.iemo_copyright}">
+            <li>© [[${#conversions.convert(copyright, 'java.lang.Integer')  ==  #conversions.convert(#dates.format(new java.util.Date(), 'yyyy'), 'java.lang.Integer') ? copyright : copyright+' - ' +  #dates.format(new java.util.Date(), 'yyyy')}]].</li>
+            <li>Design: <a href="/" th:text="${site.title}"></a>.</li>
+        </ul>
+    </footer>
+</div>
+<!-- Scripts -->
+<script th:src="@{/assets/lens/js/jquery.min.js?v={version}(version=${theme.spec.version})}"></script>
+<script th:src="@{/assets/lens/js/lazysizes.min.js?v='5.3.2'}"></script>
+<script th:src="@{/assets/lens/js/browser.min.js?v={version}(version=${theme.spec.version})}"></script>
+<script th:src="@{/assets/lens/js/breakpoints.min.js?v={version}(version=${theme.spec.version})}"></script>
+<script th:src="@{/assets/lens/js/main.js?v={version}(version=${theme.spec.version})}"></script>
+
+</body>
+
+</html>

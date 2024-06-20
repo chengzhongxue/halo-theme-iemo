@@ -1,7 +1,7 @@
 <footer>
   <div class="copyright">
-    <p>
-      Copyright © [[${#strings.isEmpty(theme.config.basic.iemo_copyright) ? '2024' : theme.config.basic.iemo_copyright}]]
+    <p th:with="copyright = ${#strings.isEmpty(theme.config.basic.iemo_copyright) ? 2024 : theme.config.basic.iemo_copyright}">
+      Copyright © [[${#conversions.convert(copyright, 'java.lang.Integer')  ==  #conversions.convert(#dates.format(new java.util.Date(), 'yyyy'), 'java.lang.Integer') ? copyright : copyright+' - ' +  #dates.format(new java.util.Date(), 'yyyy')}]]
       <a href="/" th:text="${site.title}"></a>
     </p>
     <p th:if="${not #strings.isEmpty(theme.config.basic.iemo_icp)}"><a href="https://beian.miit.gov.cn" target="_blank" th:text="${theme.config.basic.iemo_icp}"></a></p>
