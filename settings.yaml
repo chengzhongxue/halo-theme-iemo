@@ -81,7 +81,7 @@ spec:
         - $formkit: checkbox
           name: iemo_upyun
           label: 又拍云联盟
-          value: false          
+          value: false
 
     - group: sidebar
       label: 侧栏
@@ -89,14 +89,14 @@ spec:
         - $formkit: attachment
           name: iemo_avatar_author
           label: 个人头像
-          help: 个人资料的头像 
+          help: 个人资料的头像
           value: https://cravatar.cn
           accepts:
             - "image/*"
         - $formkit: attachment
           name: iemo_cover_author
           label: 个人背景
-          help: 显示在侧边栏 
+          help: 显示在侧边栏
           value: /themes/theme-iemo/assets/images/cover-author.jpg
           accepts:
             - "image/*"
@@ -110,6 +110,12 @@ spec:
           label: 个人描述
           help: 个人资料的描述
           value: 这家伙很懒，什么都没写
+        - $formkit: checkbox
+          name: iemo_aside_moment
+          id: iemo_aside_moment
+          label: 侧边栏说说
+          value: true
+          help: 控制侧边栏“说说”展示
         - $formkit: checkbox
           name: iemo_aside_subpage
           id: iemo_aside_subpage
@@ -172,5 +178,5 @@ spec:
           value: /themes/theme-iemo/assets/images/random/cover-post-1.jpg
           accepts:
             - "image/*"
-        
-    
+
+

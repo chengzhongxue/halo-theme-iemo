@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </th:block>
-            <th:block th:if="${pluginFinder.available('PluginMoments') && not #lists.isEmpty(momentFinder.listAll())}">
+            <th:block th:if="${theme.config.sidebar.iemo_aside_moment && pluginFinder.available('PluginMoments') && not #lists.isEmpty(momentFinder.listAll())}">
                 <div class="notes-box">
                     <h2>说说 <span>Notes.</span></h2>
                     <ul>

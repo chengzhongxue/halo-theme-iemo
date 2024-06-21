@@ -22,7 +22,7 @@ spec:
   issues: "https://github.com/chengzhongxue/halo-theme-iemo/issues"
   settingName: "theme-iemo-setting"
   configMapName: "theme-iemo-configMap"
-  version: "1.0.2"
+  version: "1.0.3"
   requires: ">=2.15.0"
   license:
     - name: "MIT License"
