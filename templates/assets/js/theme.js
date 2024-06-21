@@ -220,12 +220,20 @@ if($('.single .shortcuts .to-comment').length){
 }
 
 $('.menu ul li a').each((i, e) => {
-	var route = location.href.substring(0, location.href.indexOf('?') === -1 ? (location.href.indexOf('#') === -1 ? location.href.length : location.href.indexOf('#')) : location.href.indexOf('?'))
-	let href = e.href.substring(0, e.href.indexOf('?') === -1 ? (e.href.indexOf('#') === -1 ? e.href.length : e.href.indexOf('#')) : e.href.indexOf('?'))
-	if (route === href) {
-		e.parentElement.classList.add('current-menu-item')
-	}
-})
+  // 获取当前页面的路径（不包括查询参数和哈希）
+  var route = location.href.split(/[?#]/)[0];
+
+  let href = e.href.split(/[?#]/)[0];
+  // 获取当前菜单项的路径（不包括查询参数和哈希）
+  if(e.href.indexOf('?preview-theme') != -1) {
+    href =e.href;
+  }
+
+  // 比较当前页面的路径和菜单项的路径
+  if (route === href) {
+    e.parentElement.classList.add('current-menu-item');
+  }
+});
 
 function logout() {
   fetch('/logout', {
