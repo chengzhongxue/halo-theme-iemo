@@ -78,10 +78,16 @@ spec:
           name: iemo_icp_gov
           label: 公网安备号
           help: 填写公网安备号，没有请留空
-        - $formkit: checkbox
-          name: iemo_upyun
-          label: 又拍云联盟
-          value: false
+#        - $formkit: checkbox
+#          name: iemo_upyun
+#          label: 又拍云联盟
+#          value: false
+        - $formkit: attachment
+          name: iemo_cdn_src
+          id: iemo_cdn_src
+          key: iemo_cdn_src
+          label: CDN服务商图片
+          value:
 
     - group: sidebar
       label: 侧栏
