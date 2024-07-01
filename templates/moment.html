@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-    th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '说说',_footer = ~{::footer},_head = ~{::head})}">
+      th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '说说',_footer = ~{::footer},_head = ~{::head})}">
 <th:block th:fragment="head">
     <link rel="stylesheet" th:href="@{/assets/css/single.css?v={version}(version=${theme.spec.version})}">
     <link rel="stylesheet" th:href="@{/assets/static/fancybox/fancybox.css}">
 </th:block>
 <th:block th:fragment="content">
     <div class="container single">
-        <th:block th:replace="~{modules/header}" />
+        <th:block th:replace="~{modules/header}"/>
         <main>
-            <th:block th:replace="~{modules/inc/nav}" />
+            <th:block th:replace="~{modules/inc/nav}"/>
             <div class="content">
                 <article>
                     <div class="post-cover">
                         <div class="cover">
                             <img class="color-thief"
                                  th:src="${theme.config.moment.iemo_cover_moment}"
-                                alt="" crossorigin="anonymous" style="display:none">
+                                 alt="" crossorigin="anonymous" style="display:none">
                             <img th:src="${theme.config.moment.iemo_cover_moment}"
-                                style="opacity: 1; animation: 0.5s ease 0s 1 normal forwards running FadeIn-Left;">
+                                 style="opacity: 1; animation: 0.5s ease 0s 1 normal forwards running FadeIn-Left;">
                         </div>
                         <div class="shortcuts">
                             <a th:if="${haloCommentEnabled}" class="to-comment"><i
@@ -44,10 +44,10 @@
                                     <th:block th:each="media : ${content.medium}">
                                         <div class="moment-media-item">
                                             <img th:if="${#strings.equals(media.type,'PHOTO')}"
-                                                class="rounded-lg " th:src="${media.url}" loading="lazy">
+                                                 class="rounded-lg " th:src="${media.url}" loading="lazy">
                                             <video th:if="${#strings.equals(media.type,'VIDEO')}"
-                                                th:src="${media.url}" width="100%" height="auto"
-                                                controls="true"></video>
+                                                   th:src="${media.url}" width="100%" height="auto"
+                                                   controls="true"></video>
                                         </div>
                                     </th:block>
                                 </div>
@@ -55,11 +55,12 @@
                         </div>
                     </div>
                     <th:block
-                        th:replace="~{modules/inc/halo-comment :: halo-comment(name=${moment.metadata.name},kind='Moment',group='moment.halo.run')}">
+                            th:replace="~{modules/inc/halo-comment :: halo-comment(name=${moment.metadata.name},kind='Moment',group='moment.halo.run')}">
                     </th:block>
                 </article>
-                <th:block th:replace="~{modules/aside}" />
+                <th:block th:replace="~{modules/aside}"/>
             </div>
+            <th:block th:replace="~{modules/footer}"/>
         </main>
     </div>
 </th:block>

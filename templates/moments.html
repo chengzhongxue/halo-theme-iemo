@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-    th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${title},_footer = ~{::footer},_head = ~{::head})}">
+      th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${title},_footer = ~{::footer},_head = ~{::head})}">
 <th:block th:fragment="head">
     <link rel="stylesheet" th:href="@{/assets/css/single.css?v={version}(version=${theme.spec.version})}">
     <link rel="stylesheet" th:href="@{/assets/static/fancybox/fancybox.css}">
 </th:block>
 <th:block th:fragment="content">
     <div class="container note">
-        <th:block th:replace="~{modules/header}" />
+        <th:block th:replace="~{modules/header}"/>
         <script>
             $('header .menu ul li.note').addClass('current-menu-item');
         </script>
         <main>
-            <th:block th:replace="~{modules/inc/nav}" />
+            <th:block th:replace="~{modules/inc/nav}"/>
             <div class="content">
                 <article>
                     <h2>说说 <span>Moments.</span></h2>
@@ -23,8 +23,8 @@
                             </li>
                             <li th:each="tag,iStat : ${tags}">
                                 <a th:href="|/moments?tag=${tag.name}|"
-                                    th:class="${#lists.contains(param.tag, tag.name) ? 'active' : ''}"
-                                    th:text="${tag.name}"></a>
+                                   th:class="${#lists.contains(param.tag, tag.name) ? 'active' : ''}"
+                                   th:text="${tag.name}"></a>
                             </li>
                         </ul>
                     </div>
@@ -38,22 +38,22 @@
                                     <div class="right">
                                         <div class="note-author" th:text="${moment.owner.displayName}"></div>
                                         <div class="note-date"
-                                            th:text="${#dates.format(moment.spec.releaseTime,'yyyy年MM月dd日 HH:mm')}">
+                                             th:text="${#dates.format(moment.spec.releaseTime,'yyyy年MM月dd日 HH:mm')}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="center" th:with="content=${moment.spec.content}">
                                     <div class="notes-content" th:utext="${content.html}"></div>
-
+                                    
                                     <th:block th:if="${not #lists.isEmpty(content.medium)}">
                                         <div th:class="|moment-media medium-${content.medium.size}|">
                                             <th:block th:each="media : ${content.medium}">
                                                 <div class="moment-media-item">
                                                     <img th:if="${#strings.equals(media.type,'PHOTO')}"
-                                                        class="rounded-lg " th:src="${media.url}" loading="lazy">
+                                                         class="rounded-lg " th:src="${media.url}" loading="lazy">
                                                     <video th:if="${#strings.equals(media.type,'VIDEO')}"
-                                                        th:src="${media.url}" width="100%" height="auto"
-                                                        controls="true"></video>
+                                                           th:src="${media.url}" width="100%" height="auto"
+                                                           controls="true"></video>
                                                 </div>
                                             </th:block>
                                         </div>
@@ -66,10 +66,11 @@
                             </li>
                         </ul>
                     </div>
-                    <th:block th:replace="~{modules/inc/ajax/ajax-note-page}" />
+                    <th:block th:replace="~{modules/inc/ajax/ajax-note-page}"/>
                 </article>
-                <th:block th:replace="~{modules/aside}" />
+                <th:block th:replace="~{modules/aside}"/>
             </div>
+            <th:block th:replace="~{modules/footer}"/>
         </main>
     </div>
 
@@ -87,7 +88,7 @@
             })
         }
     </script>
-
+    
     <script th:src="@{/assets/static/fancybox/fancybox.umd.js}"></script>
 </th:block>
 
