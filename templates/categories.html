@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '分类',_footer = ~{::footer},_head = null)}">
+      th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '分类',_footer = ~{::footer},_head = null)}">
 <th:block th:fragment="content">
-  <div class="container category">
-    <th:block th:replace="~{modules/header}" />
-    <main>
-      <th:block th:replace="~{modules/inc/nav}" />
-      <div class="content">
-        <article>
-          <li class="categories">
-            <h2>分类 <span>Categories.</span></h2>
-            <ul th:with="categories = ${categoryFinder.listAll()}">
-              <li th:each="category : ${categories}" class="cat-item">
-                <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
-              </li>
-            </ul>
-          </li>
-          <div class="cate-box"></div>
-        </article>
-        <th:block th:replace="~{modules/aside}" />
-      </div>
-    </main>
-  </div>
+    <div class="container category">
+        <th:block th:replace="~{modules/header}"/>
+        <main>
+            <th:block th:replace="~{modules/inc/nav}"/>
+            <div class="content">
+                <article>
+                    <li class="categories">
+                        <h2>分类 <span>Categories.</span></h2>
+                        <ul th:with="categories = ${categoryFinder.listAll()}">
+                            <li th:each="category : ${categories}" class="cat-item">
+                                <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <div class="cate-box"></div>
+                </article>
+                <th:block th:replace="~{modules/aside}"/>
+            </div>
+            <th:block th:replace="~{modules/footer}"/>
+        </main>
+    </div>
 </th:block>
 <th:block th:fragment="footer">
-  <th:block th:replace="~{modules/inc/ajax/ajax-cate-tpl}" />
+    <th:block th:replace="~{modules/inc/ajax/ajax-cate-tpl}"/>
 </th:block>
 
 </html>

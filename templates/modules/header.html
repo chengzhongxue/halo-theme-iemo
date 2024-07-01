@@ -1,6 +1,11 @@
 <header class="">
     <div class="logo">
-        <a href="/"><img th:src="${site.logo}" alt=""></a>
+        <!-- <a href="/"> -->
+        <!--     <img th:src="${site.logo}" alt=""> -->
+        <!-- </a> -->
+        <div class="search-btn" id="search-btn" th:if="${pluginFinder.available('PluginSearchWidget')}">
+            <span class="iconfont icon-search" onclick="SearchWidget.open()" style="font-size: 25px;"></span>
+        </div>
     </div>
     <div class="menu">
         <ul class="menu" th:with="topMenu = ${menuFinder.getPrimary()}">
@@ -9,7 +14,7 @@
                     th:with="icon = ${#annotations.getOrDefault(menuItem, 'icon', '')}">
                     <a title="" th:href="@{${menuItem.status.href}}" aria-current="page">
                         <th:block th:if="${not #strings.isEmpty(icon)}">
-                            <span  th:class="${icon}"></span>
+                            <span th:class="${icon}"></span>
                             <span class="menu-item-title" th:text="${menuItem.status.displayName}"></span>
                         </th:block>
                         <th:block th:unless="${not #strings.isEmpty(icon)}" th:text="${menuItem.status.displayName}">
@@ -17,7 +22,7 @@
                     </a>
                 </li>
             </th:block>
-
+        
         </ul>
     </div>
 </header>

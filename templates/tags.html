@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '标签',_footer = ~{::footer},_head = null)}">
+      th:replace="~{modules/layout :: layout(_content = ~{::content},_title = '标签',_footer = ~{::footer},_head = null)}">
 <th:block th:fragment="content">
-  <div class="container tag">
-    <th:block th:replace="~{modules/header}" />
-    <main>
-      <th:block th:replace="~{modules/inc/nav}" />
-      <div class="content">
-        <article>
-          <h2>标签 <span>Tags.</span></h2>
-          <div class="tag-bar">
-            <ul th:with="tags = ${tagFinder.listAll()}">
-              <li th:each="tagItem : ${tags}">
-                <a th:href="@{${tagItem.status.permalink}}" th:text="${tagItem.spec.displayName}"></a>
-              </li>
-            </ul>
-          </div>
-          <div class="tag-box"></div>
-        </article>
-        <th:block th:replace="~{modules/aside}" />
-      </div>
-    </main>
-  </div>
+    <div class="container tag">
+        <th:block th:replace="~{modules/header}"/>
+        <main>
+            <th:block th:replace="~{modules/inc/nav}"/>
+            <div class="content">
+                <article>
+                    <h2>标签 <span>Tags.</span></h2>
+                    <div class="tag-bar">
+                        <ul th:with="tags = ${tagFinder.listAll()}">
+                            <li th:each="tagItem : ${tags}">
+                                <a th:href="@{${tagItem.status.permalink}}" th:text="${tagItem.spec.displayName}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tag-box"></div>
+                </article>
+                <th:block th:replace="~{modules/aside}"/>
+            </div>
+            <th:block th:replace="~{modules/footer}"/>
+        </main>
+    </div>
 </th:block>
 <th:block th:fragment="footer">
-  <th:block th:replace="~{modules/inc/ajax/ajax-tag-tpl}" />
+    <th:block th:replace="~{modules/inc/ajax/ajax-tag-tpl}"/>
 </th:block>
 
 </html>

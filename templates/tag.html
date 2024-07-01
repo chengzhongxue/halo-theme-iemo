@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${tag.spec.displayName},_footer = ~{::footer},_head = null)}">
+      th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${tag.spec.displayName},_footer = ~{::footer},_head = null)}">
 <th:block th:fragment="content">
-  <div class="container tag">
-    <th:block th:replace="~{modules/header}" />
-    <main>
-      <th:block th:replace="~{modules/inc/nav}" />
-      <div class="content">
-        <article>
-          <h2>标签 <span>Tags.</span></h2>
-          <div class="tag-bar">
-            <ul th:with="tags = ${tagFinder.listAll()}">
-              <li th:each="tagItem : ${tags}">
-                <a th:href="@{${tagItem.status.permalink}}" th:text="${tagItem.spec.displayName}"></a>
-              </li>
-            </ul>
-          </div>
-          <div class="tag-box">
-            <ul>
-              <li th:each="post,iStat : ${posts.items}">
-                <div class="left">
-                  <a th:href="@{${post.status.permalink}}">
-                    <img th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : post.spec.cover}"
-                         th:src="${img}" alt="">
-                  </a>
-                </div>
-                <div class="right">
-                  <p><a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a></p>
-                  <span><i class="iconfont icon-clock"></i>[[${' '+#dates.format(post.spec.publishTime,'yyyy年MM月dd日')}]]</span>
-                </div>
-              </li>
-            </ul>
-            <div id="pagination-post" class="pagination" th:if="${posts.hasNext}">
-              <a th:href="@{${posts.nextUrl}}"><i class="iconfont icon-activity"></i> 加载更多文章</a>
+    <div class="container tag">
+        <th:block th:replace="~{modules/header}"/>
+        <main>
+            <th:block th:replace="~{modules/inc/nav}"/>
+            <div class="content">
+                <article>
+                    <h2>标签 <span>Tags.</span></h2>
+                    <div class="tag-bar">
+                        <ul th:with="tags = ${tagFinder.listAll()}">
+                            <li th:each="tagItem : ${tags}">
+                                <a th:href="@{${tagItem.status.permalink}}" th:text="${tagItem.spec.displayName}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tag-box">
+                        <ul>
+                            <li th:each="post,iStat : ${posts.items}">
+                                <div class="left">
+                                    <a th:href="@{${post.status.permalink}}">
+                                        <img th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : post.spec.cover}"
+                                             th:src="${img}" alt="">
+                                    </a>
+                                </div>
+                                <div class="right">
+                                    <p><a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a></p>
+                                    <span><i class="iconfont icon-clock"></i>[[${' '+#dates.format(post.spec.publishTime,'yyyy年MM月dd日')}]]</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div id="pagination-post" class="pagination" th:if="${posts.hasNext}">
+                            <a th:href="@{${posts.nextUrl}}"><i class="iconfont icon-activity"></i> 加载更多文章</a>
+                        </div>
+                        <div class="pagination-post no-more-post" th:unless="${posts.hasNext}"><a><i
+                                class="iconfont icon-anchor"></i> 好像就这么多</a></div>
+                    </div>
+                </article>
+                <th:block th:replace="~{modules/aside}"/>
             </div>
-            <div class="pagination-post no-more-post" th:unless="${posts.hasNext}"><a><i class="iconfont icon-anchor"></i> 好像就这么多</a></div>
-          </div>
-        </article>
-        <th:block th:replace="~{modules/aside}" />
-      </div>
-    </main>
-  </div>
+            <th:block th:replace="~{modules/footer}"/>
+        </main>
+    </div>
 </th:block>
 <th:block th:fragment="footer">
-  <th:block th:replace="~{modules/inc/ajax/ajax-tag}" />
+    <th:block th:replace="~{modules/inc/ajax/ajax-tag}"/>
 </th:block>
 </html>
