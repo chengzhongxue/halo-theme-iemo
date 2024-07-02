@@ -122,31 +122,37 @@ spec:
           label: 侧边栏说说
           value: true
           help: 控制侧边栏“说说”展示
-        - $formkit: checkbox
+        - $formkit: group
           name: iemo_aside_subpage
-          id: iemo_aside_subpage
           label: 侧边栏附页
-          value: false
-          help: 可添加内容：菜单、评论、关于
-        - $formkit: checkbox
-          if: $get(iemo_aside_subpage).value
-          name: iemo_aside_comments
-          id: iemo_aside_comments
-          label: 侧边栏附页-评论
-          value: false
-          help: 开启附页最新评论
-        - $formkit: number
-          if: $get(iemo_aside_comments).value
-          name: iemo_aside_comments_num
-          label: 最大展示条数
-          value: 6
-          help: 显示最新评论数量（1~100），默认6条
-        - $formkit: code
-          name: iemo_about
-          label: 侧边栏附页-关于
-          height: 200px
-          language: html
-          help: 位于侧边栏附页，填写文本，可用于对博客或自己的介绍等
+          value:
+          children:
+            - $formkit: checkbox
+              name: iemo_aside_subpage_enable
+              id: iemo_aside_subpage_enable
+              label: 侧边栏附页
+              value: false
+              help: 可添加内容：菜单、评论、关于
+            - $formkit: checkbox
+              if: $get(iemo_aside_subpage_enable).value
+              name: iemo_aside_comments
+              id: iemo_aside_comments
+              label: 侧边栏附页-评论
+              value: false
+              help: 开启附页最新评论
+            - $formkit: number
+              if: $get(iemo_aside_comments).value
+              name: iemo_aside_comments_num
+              label: 最大展示条数
+              value: 6
+              help: 显示最新评论数量（1~100），默认6条
+            - $formkit: code
+              if: $get(iemo_aside_subpage_enable).value
+              name: iemo_about
+              label: 侧边栏附页-关于
+              height: 200px
+              language: html
+              help: 位于侧边栏附页，填写文本，可用于对博客或自己的介绍等
         - $formkit: repeater
           name: socialMedia
           label: 社交媒体

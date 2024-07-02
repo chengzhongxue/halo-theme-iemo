@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div th:if="${theme.config.sidebar.iemo_aside_subpage}" class="aside-btn-open">查看更多<i
+                <div th:if="${theme.config.sidebar.iemo_aside_subpage.iemo_aside_subpage_enable}" class="aside-btn-open">查看更多<i
                         class="iconfont icon-chevron-right"></i></div>
             </div>
             <th:block th:if="${not #lists.isEmpty(theme.config.sidebar.socialMedia)}"
