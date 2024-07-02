@@ -1,0 +1,63 @@
+<aside class="">
+    <div class="aside-content">
+        <div class="aside-page main-page active">
+            <th:block th:if="${theme.config.post.iemo_toc}">
+                <div class="toc">
+                    <h2>目录<span style="margin-left: 0.5rem;">Toc.</span></h2>
+                    <ul></ul>
+                </div>
+            </th:block>
+            <th:block
+                    th:if="${theme.config.sidebar.iemo_aside_moment && pluginFinder.available('PluginMoments') && not #lists.isEmpty(momentFinder.listAll())}">
+                <div class="notes-box">
+                    <h2>说说<span style="margin-left: 0.5rem;">Notes.</span></h2>
+                    <ul>
+                        <li th:each="moment : ${momentFinder.listAll()}" th:with="content=${moment.spec.content}">
+                            <div class="notes-content">
+                                <p th:utext="${content.raw}"></p>
+                            </div>
+                            
+                            <div class="notes-info">
+                                <div class="time">
+                                    <span th:text="${#dates.format(moment.spec.releaseTime,'yyyy年MM月dd日')}"></span>
+                                </div>
+                            </div>
+                            <div class="view-detail"><a th:href="${'/moments/'+moment.metadata.name}">查看详情</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </th:block>
+            <th:block th:if="${theme.config.sidebar.iemo_aside_comments}">
+                <div class="new-comments">
+                    <h2>评论 <span>Comments.</span></h2>
+                    <th:block th:replace="~{modules/inc/aside-comments}" />
+                </div>
+            </th:block>
+            <!-- 自定义区域 -->
+            <th:block th:if="${not #lists.isEmpty(theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_enable)}">
+                <div class="social">
+                    <h2 style="float: left;" th:text="${theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_title}">
+                    </h2>
+                    <span class="adv"
+                          th:text="${theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_title_sec} + '.'"></span>
+                    <div class="">
+                        <ul class="menu">
+                            <img class="iemo_aside_adv"
+                                 th:src="${theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_src}">
+                        </ul>
+                    </div>
+                </div>
+                <style>
+                    .adv {
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: #999;
+                        margin-left: 0.5rem;
+                    }
+                </style>
+            </th:block>
+        </div>
+        <th:block th:replace="~{modules/inc/aside-sub-page}"/>
+    </div>
+</aside>
