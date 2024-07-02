@@ -161,6 +161,43 @@ spec:
             - $formkit: url
               name: url
               label: 链接
+        - $formkit: group
+          name: iemo_aside_adv
+          label: 侧边栏自定义广告区域
+          help: 控制侧边栏自定义区域
+          children:
+            - $formkit: checkbox
+              name: iemo_aside_adv_enable
+              id: iemo_aside_adv_enable
+              key: iemo_aside_adv_enable
+              label: 侧边栏自定义广告区域
+              value: false
+              help: 控制侧边栏自定义区域展示
+            - $formkit: text
+              if: $get(iemo_aside_adv_enable).value
+              name: iemo_aside_adv_title
+              key: iemo_aside_adv_title
+              id: iemo_aside_adv_title
+              label: 自定义区域主标题
+              help: 自定义区域主标题
+              value: 广告
+            - $formkit: text
+              if: $get(iemo_aside_adv_enable).value
+              name: iemo_aside_adv_title_sec
+              id: iemo_aside_adv_title_sec
+              key: iemo_aside_adv_title_sec
+              label: 自定义区域副标题
+              help: 自定义区域副标题
+              value: Advertise
+            - $formkit: attachment
+              if: $get(iemo_aside_adv_enable).value
+              name: iemo_aside_adv_src
+              key: iemo_aside_adv_src
+              id: iemo_aside_adv_src
+              label: 自定义区域图片地址
+              help: 自定义区域图片地址
+              accepts:
+                - "image/*"
 
     - group: post
       label: 文章

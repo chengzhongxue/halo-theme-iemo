@@ -31,16 +31,10 @@
                 <div th:if="${theme.config.sidebar.iemo_aside_subpage}" class="aside-btn-open">查看更多<i
                         class="iconfont icon-chevron-right"></i></div>
             </div>
-            <th:block th:if="${theme.config.post.iemo_toc}">
-                <div class="toc">
-                    <h2>目录 <span>Toc.</span></h2>
-                    <ul></ul>
-                </div>
-            </th:block>
             <th:block th:if="${not #lists.isEmpty(theme.config.sidebar.socialMedia)}"
                 th:with="socialMedias = ${theme.config.sidebar.socialMedia}">
                 <div class="social">
-                    <h2>社交 <span>Social.</span></h2>
+                    <h2>社交<span style="margin-left: 0.5rem;">Social.</span></h2>
                     <div class="social-content">
                         <ul class="menu">
                             <li class="menu-item" th:each="socialMedia : ${socialMedias}">
@@ -53,9 +47,15 @@
                     </div>
                 </div>
             </th:block>
+            <th:block th:if="${theme.config.post.iemo_toc}">
+                <div class="toc">
+                    <h2>目录<span style="margin-left: 0.5rem;">Toc.</span></h2>
+                    <ul></ul>
+                </div>
+            </th:block>
             <th:block th:if="${theme.config.sidebar.iemo_aside_moment && pluginFinder.available('PluginMoments') && not #lists.isEmpty(momentFinder.listAll())}">
                 <div class="notes-box">
-                    <h2>说说 <span>Notes.</span></h2>
+                    <h2>说说<span style="margin-left: 0.5rem;">Notes.</span></h2>
                     <ul>
                         <li th:each="moment : ${momentFinder.listAll()}" th:with="content=${moment.spec.content}">
                             <div class="notes-content">
@@ -72,6 +72,26 @@
                         </li>
                     </ul>
                 </div>
+            </th:block>
+            <!-- 自定义区域 -->
+            <th:block th:if="${not #lists.isEmpty(theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_enable)}">
+                <div class="social">
+                    <h2 style="float: left;" th:text="${theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_title}">
+                    </h2>
+                    <span class="adv" th:text="${theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_title_sec} + '.'"></span>
+                    <div class="">
+                        <ul class="menu">
+                            <img class="iemo_aside_adv" th:src="${theme.config.sidebar.iemo_aside_adv.iemo_aside_adv_src}">
+                        </ul>
+                    </div>
+                </div>
+                <style>
+                    .adv{
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: #999;
+                    }
+                </style>
             </th:block>
         </div>
         <th:block th:replace="~{modules/inc/aside-sub-page}" />

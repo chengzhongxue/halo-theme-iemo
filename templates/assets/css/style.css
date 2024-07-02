@@ -3425,3 +3425,9 @@ a.footer-banner-link {
 img.entered.loading.cloud {
     height: 32px;
 }
+
+.iemo_aside_adv {
+  background-repeat: no-repeat;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
