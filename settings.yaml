@@ -120,21 +120,26 @@ spec:
           name: iemo_aside_moment
           id: iemo_aside_moment
           label: 侧边栏说说
-          value: true
+          value: false
           help: 控制侧边栏“说说”展示
         - $formkit: group
-          name: iemo_aside_subpage
+          name: iemo_aside_page
           label: 侧边栏附页
           value:
+            iemo_aside_subpage_enable: false
+            iemo_aside_comments: false
+            iemo_aside_comments_num: 6
+            iemo_about:
           children:
             - $formkit: checkbox
-              name: iemo_aside_subpage_enable
-              id: iemo_aside_subpage_enable
-              label: 侧边栏附页
+              name: iemo_aside_subpage
+              id: iemo_aside_subpage
+              key: iemo_aside_subpage
+              label: 启动侧边栏附页
               value: false
               help: 可添加内容：菜单、评论、关于
             - $formkit: checkbox
-              if: $get(iemo_aside_subpage_enable).value
+              if: $get(iemo_aside_subpage).value
               name: iemo_aside_comments
               id: iemo_aside_comments
               label: 侧边栏附页-评论
@@ -147,7 +152,7 @@ spec:
               value: 6
               help: 显示最新评论数量（1~100），默认6条
             - $formkit: code
-              if: $get(iemo_aside_subpage_enable).value
+              if: $get(iemo_aside_subpage).value
               name: iemo_about
               label: 侧边栏附页-关于
               height: 200px

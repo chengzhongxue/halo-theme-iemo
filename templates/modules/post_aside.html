@@ -1,6 +1,36 @@
 <aside class="">
     <div class="aside-content">
         <div class="aside-page main-page active">
+            <div class="author">
+                <div class="cover">
+                    <img th:with="img = ${#strings.isEmpty(theme.config.sidebar.iemo_cover_author) ? '/themes/theme-iemo/assets/images/cover-author.jpg' : theme.config.sidebar.iemo_cover_author}"
+                         th:src="${img}" alt="">
+                </div>
+                <div class="author-info">
+                    <div class="avatar">
+                        <img th:src="${theme.config.sidebar.iemo_avatar_author}">
+                    </div>
+                    <div class="name" th:text="${theme.config.sidebar.iemo_name_author}"></div>
+                    <div class="des" th:text="${theme.config.sidebar.iemo_des_author}"></div>
+                    <div class="post-info" th:with="stats = ${siteStatsFinder.getStats()}">
+                        <div class="posts">
+                            <i>文章</i>
+                            <span th:text="${stats.post}"></span>
+                        </div>
+                        <div class="tags" th:with="tags = ${tagFinder.listAll()}">
+                            <i>标签</i>
+                            <span th:text="${tags.size}"></span>
+                        </div>
+                        <div class="notes" th:if="${pluginFinder.available('PluginMoments')}"
+                             th:with=" moment = ${momentFinder.listAll()}">
+                            <i>说说</i>
+                            <span th:text="${moment.size()}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${theme.config.sidebar.iemo_aside_page.iemo_aside_subpage}" class="aside-btn-open">查看更多<i
+                        class="iconfont icon-chevron-right"></i></div>
+            </div>
             <th:block th:if="${theme.config.post.iemo_toc}">
                 <div class="toc">
                     <h2>目录<span style="margin-left: 0.5rem;">Toc.</span></h2>
@@ -28,7 +58,7 @@
                     </ul>
                 </div>
             </th:block>
-            <th:block th:if="${theme.config.sidebar.iemo_aside_comments}">
+            <th:block th:if="${theme.config.sidebar.iemo_aside_page.iemo_aside_comments}">
                 <div class="new-comments">
                     <h2>评论 <span>Comments.</span></h2>
                     <th:block th:replace="~{modules/inc/aside-comments}" />

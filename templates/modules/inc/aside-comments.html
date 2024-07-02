@@ -1,4 +1,4 @@
-<th:block th:with="iemo_aside_comments_num = ${#conversions.convert(theme.config.sidebar.iemo_aside_comments_num, 'java.lang.Integer')},
+<th:block th:with="iemo_aside_comments_num = ${#conversions.convert(theme.config.sidebar.iemo_aside_page.iemo_aside_comments_num, 'java.lang.Integer')},
   comments = ${commentFinder.list(null, 1, iemo_aside_comments_num)}">
     <th:block th:if=" ${not #lists.isEmpty(comments.items)}">
         <th:block th:each="comment,iterStat : ${comments.items}">

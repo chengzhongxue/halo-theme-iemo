@@ -56,13 +56,13 @@
             $('.menu_sidebar > ul > li.menu-item-has-children > a').append('<span class="iconfont icon-chevron-down arrow"></span>');
         </script>
     </th:block>
-    <th:block th:if="${theme.config.sidebar.iemo_aside_comments}">
+    <th:block th:if="${theme.config.sidebar.iemo_aside_page.iemo_aside_comments}">
         <div class="new-comments">
             <h2>评论 <span>Comments.</span></h2>
             <th:block th:replace="~{modules/inc/aside-comments}" />
         </div>
     </th:block>
-    <th:block th:if="${not #strings.isEmpty(theme.config.sidebar.iemo_about)}">
+    <th:block th:if="${not #strings.isEmpty(theme.config.sidebar.iemo_aside_page.iemo_about)}">
         <div class="about">
             <h2>关于 <span>About.</span></h2>
             <p th:utext="${theme.config.custom.head_html}"></p>
