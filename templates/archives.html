@@ -11,7 +11,7 @@
           <h2>归档 <span>Archives.</span></h2>
           <div class="archive-box">
             <ul>
-              <th:block th:each="archive : ${archives.items}">
+              <th:block th:each="archive : ${postFinder.archives(1, 0).items}">
                 <th:block th:each="month : ${archive.months}">
                   <h3>[[${archive.year}]]年[[${month.month}]]月</h3>
                   <li th:each="post : ${month.posts}">

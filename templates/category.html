@@ -22,7 +22,7 @@
                 <div class="left">
                   <a th:href="@{${post.status.permalink}}">
                     <img
-                      th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : post.spec.cover}"
+                      th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : thumbnail.gen(post.spec.cover, 's')}"
                       th:src="${img}" alt="">
                   </a>
                 </div>

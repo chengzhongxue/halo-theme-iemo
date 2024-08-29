@@ -26,6 +26,9 @@
                             </th:block>
                         </ul>
                     </div>
+                    <th:block
+                            th:replace="~{modules/inc/halo-comment :: halo-comment(name=${pluginName},kind='Plugin',group='plugin.halo.run')}">
+                    </th:block>
                 </article>
                 <th:block th:replace="~{modules/aside}" />
             </div>
