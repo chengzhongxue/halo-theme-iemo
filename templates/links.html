@@ -9,6 +9,9 @@
             <div class="content">
                 <article>
                     <h2>友人帐 <span>Links.</span></h2>
+                    <div class="single" th:unless="${#strings.isEmpty(theme.config.plugin.links.content)}">
+                        <div class="post-content" th:utext="${theme.config.plugin.links.content}"></div>
+                    </div>
                     <div class="link-box">
                         <ul>
                             <th:block th:each="group,iterStat : ${groups}">
@@ -26,8 +29,10 @@
                             </th:block>
                         </ul>
                     </div>
-                    <th:block
-                            th:replace="~{modules/inc/halo-comment :: halo-comment(name=${pluginName},kind='Plugin',group='plugin.halo.run')}">
+                    <th:block class="comment-widget" th:if="${theme.config.plugin.links.enable_comment}">
+                        <th:block
+                                th:replace="~{modules/inc/halo-comment :: halo-comment(name=${pluginName},kind='Plugin',group='plugin.halo.run')}">
+                        </th:block>
                     </th:block>
                 </article>
                 <th:block th:replace="~{modules/aside}" />

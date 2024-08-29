@@ -172,5 +172,25 @@ spec:
           value: /themes/theme-iemo/assets/images/random/cover-post-1.jpg
           accepts:
             - "image/*"
+            -
+    - group: plugin
+      label: 插件适配
+      formSchema:
+        - $formkit: group
+          name: links
+          label: 链接插件
+          value:
+            enable_comment: false
+          children:
+            - $formkit: checkbox
+              name: enable_comment
+              label: 启用评论
+              help: "启用链接插件原生适配的评论组件，需要链接插件 >= 1.4.0 版本"
+            - $formkit: code
+              label: 页面内容
+              language: html
+              height: 400px
+              name: content
+              help: 页面底部内容，可以用于填写申请信息，支持 HTML
         
     
