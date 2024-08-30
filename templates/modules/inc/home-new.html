@@ -3,7 +3,7 @@
         <li th:each="post,iter : ${postItems}">
             <div class="left">
                 <a class="cover" th:href="@{${post.status.permalink}}">
-                    <img th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : thumbnail.gen(post.spec.cover, 's')}"
+                    <img th:with="img = ${#strings.isEmpty(post.spec.cover) ? theme.config.post.iemo_cover_post : thumbnail.gen(post.spec.cover, 'm')}"
                          th:src="${img}" alt="">
                 </a>
                 <div class="cate-view">

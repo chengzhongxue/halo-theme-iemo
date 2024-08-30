@@ -14,7 +14,7 @@
         <article>
           <div class="post-cover">
             <div class="cover"
-              th:with="cover = ${not #strings.isEmpty(post.spec.cover) ? thumbnail.gen(post.spec.cover, 'm') : theme.config.post.iemo_cover_post}">
+              th:with="cover = ${not #strings.isEmpty(post.spec.cover) ? thumbnail.gen(post.spec.cover, 'l') : theme.config.post.iemo_cover_post}">
               <th:block th:if="${not #strings.isEmpty(cover)}">
                 <img class="thumbnail_loading" th:src="@{/assets/images/loading.gif}" alt="">
                 <img th:src="${cover}" alt="">
