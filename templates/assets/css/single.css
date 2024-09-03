@@ -130,9 +130,12 @@
   list-style: decimal;
 }
 
-/* 代码 */
-.single .post-content code {
+code {
   border-radius: 4px;
+  background-color: var(--code-bgc);
+  color: var(--theme-bak);
+  font-size: 14px;
+  padding: 2px 4px;
   font-family: 'PingFang SC','Consolas','Courier New','monospace';
 }
 .single .post-content pre {
