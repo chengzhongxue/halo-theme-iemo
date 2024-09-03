@@ -17,12 +17,12 @@ spec:
         file: page_links.html
   description: 简约感设计Halo主题
   logo: "/themes/theme-iemo/assets/images/logo.png"
-  homepage: "https://github.com/chengzhongxue/halo-theme-iemo"
+  homepage: "https://www.halo.run/store/apps/app-ufBcY"
   repo: "https://github.com/chengzhongxue/halo-theme-iemo"
   issues: "https://github.com/chengzhongxue/halo-theme-iemo/issues"
   settingName: "theme-iemo-setting"
   configMapName: "theme-iemo-configMap"
-  version: "1.0.3"
+  version: "1.0.4"
   requires: ">=2.19.0"
   license:
     - name: "MIT License"
