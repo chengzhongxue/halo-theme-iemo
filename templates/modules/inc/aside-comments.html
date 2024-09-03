@@ -1,15 +1,15 @@
 <th:block th:with="iemo_aside_comments_num = ${#conversions.convert(theme.config.sidebar.iemo_aside_comments_num, 'java.lang.Integer')},
   comments = ${commentFinder.list(null, 1, iemo_aside_comments_num)}">
-    <th:block th:if=" ${not #lists.isEmpty(comments.items)}">
+    <ul th:if="${not #lists.isEmpty(comments.items)}">
         <th:block th:each="comment,iterStat : ${comments.items}">
             <li th:with="page = ${comment.spec.subjectRef.kind == 'Post' ? postFinder.getByName(comment.spec.subjectRef.name) :
-        comment.spec.subjectRef.kind == 'SinglePage' && not #strings.contains('photos,links,moments', comment.spec.subjectRef.name) ? singlePageFinder.getByName(comment.spec.subjectRef.name) : null},
-        url = ${page == null? '/' : page.status.permalink + '#comment-' + comment.metadata.name}">
+            comment.spec.subjectRef.kind == 'SinglePage' && not #strings.contains('photos,links,moments', comment.spec.subjectRef.name) ? singlePageFinder.getByName(comment.spec.subjectRef.name) : null},
+            url = ${page == null? '/' : page.status.permalink + '#response'}">
                 <div class="top">
                     <div class="avatar">
                         <img th:with=" img =${#strings.isEmpty(comment.owner.avatar)? theme.config.basics.providerMirror+'/avatar/'+comment.spec.owner.annotations['email-hash'] :comment.owner.avatar}"
-                            alt="" th:src="${img}" class="avatar avatar-96 photo" height="96" width="96" loading="lazy"
-                            decoding="async">
+                             alt="" th:src="${img}" class="avatar avatar-96 photo" height="96" width="96" loading="lazy"
+                             decoding="async">
                     </div>
                     <div class="user">
                         <div class="name">
@@ -25,8 +25,7 @@
                 </div>
             </li>
         </th:block>
-
-    </th:block>
+    </ul>
     <th:block th:unless=" ${not #lists.isEmpty(comments.items)}">
         <p><i class="iconfont icon-anchor"></i>暂无评论</p>
     </th:block>
