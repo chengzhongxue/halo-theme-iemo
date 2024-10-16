@@ -235,29 +235,6 @@ $('.menu ul li a').each((i, e) => {
   }
 });
 
-function logout() {
-  fetch('/logout', {
-    method: 'POST',
-    headers: {
-      'X-Xsrf-Token':
-          document.cookie
-              .split('; ')
-              .find((row) => row.startsWith('XSRF-TOKEN'))
-              ?.split('=')[1] || '',
-    }
-  })
-      .then(response => {
-        if (response.ok) {
-          window.location.reload();
-        } else {
-          console.error('Logout failed:', response.status);
-        }
-      })
-      .catch(error => {
-        console.error('Network error:', error);
-      });
-}
-
 //处理瞬间权限
 async function role() {
   const response = await fetch(`/apis/api.console.halo.run/v1alpha1/users/-`);

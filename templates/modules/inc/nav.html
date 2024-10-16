@@ -6,26 +6,19 @@
         </div>
     </div>
     <div class="user-menu">
-        <th:block sec:authorize="isAuthenticated()">
-            <span class="iconfont icon-menu" id="user-menu-btn"></span>
-            <div class="user-menu-box">
-                <ul>
-                    <li><a id="postsEdit" href="/console/posts"><i class="iconfont icon-edit"></i> 发布新文章</a></li>
-                    <li><a id="momentsEdit" href="/console/moments"><i class="iconfont icon-edit-"></i> 发布新说说</a></li>
-                    <li><a href="/console"><i class="iconfont icon-settings"></i> 后台设置</a></li>
-                    <li><a href="/uc/profile"><i class="iconfont icon-settings"></i> 个人资料</a></li>
-                    <li><a onclick="logout()" class="logout"><i class="iconfont icon-power"></i> 登出账户</a></li>
-                </ul>
-            </div>
-        </th:block>
-        <th:block sec:authorize="isAnonymous()">
-            <span class="iconfont icon-menu" id="user-menu-btn"></span>
-            <div class="user-menu-box">
-                <ul>
-                    <li><a href="/console/login"><i class="iconfont icon-log-in"></i> 登录账户</a></li>
-                </ul>
-            </div>
-        </th:block>
+        <span class="iconfont icon-menu" id="user-menu-btn"></span>
+        <div class="user-menu-box">
+            <ul sec:authorize="isAuthenticated()">
+                <li><a id="postsEdit" href="/console/posts"><i class="iconfont icon-edit"></i> 发布新文章</a></li>
+                <li><a id="momentsEdit" href="/console/moments"><i class="iconfont icon-edit-"></i> 发布新说说</a></li>
+                <li><a href="/console"><i class="iconfont icon-settings"></i> 后台设置</a></li>
+                <li><a href="/uc/profile"><i class="iconfont icon-settings"></i> 个人资料</a></li>
+                <li><a href="/logout" class="logout"><i class="iconfont icon-power"></i> 登出账户</a></li>
+            </ul>
+            <ul sec:authorize="isAnonymous()">
+                <li><a href="/console"><i class="iconfont icon-log-in"></i> 登录账户</a></li>
+            </ul>
+        </div>
         <span class="iconfont icon-user" id="aside-btn"></span>
     </div>
 </div>
