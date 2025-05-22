@@ -54,9 +54,11 @@ iEmo 主题支持以下 Halo 插件：
 
 如果你对主题有什么建议或者意见，欢迎提 PR & issue。
 
-添加企业微信 （备注什么主题）
+* 添加企业微信 （备注进群）
 <img width="360" src="https://api.minio.yyds.pink/kunkunyu/files/2025/02/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250212142105-pbceif.jpg" />
 
+* QQ群
+<img width="360" src="https://api.minio.yyds.pink/kunkunyu/files/2025/05/qq-708998089-iqowsh.webp" />
 
 ### 赞助
 如果 iEmo 对你有帮助，欢迎[赞助我](https://afdian.net/a/moony_la)，感谢以下赞助者对 iEmo 项目的支持：
