@@ -2,7 +2,23 @@
 <html xmlns:th="https://www.thymeleaf.org"
     th:replace="~{modules/layout :: layout(_content = ~{::content},_title = ${title},_footer = null,_head = ~{::head})}">
 <th:block th:fragment="head">
-    <th:block th:replace="~{plugin:plugin-douban:modules/style}"></th:block>
+    <th:block th:replace="~{plugin:equipment:modules/style}"></th:block>
+    <style>
+        .equipment-item-content-item {
+            width: calc(33.33% - 12px);
+            min-height: 375px;
+        }
+        @media screen and (max-width: 1200px) {
+            .equipment-item-content-item {
+                width: calc(50% - 12px);
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .equipment-item-content-item {
+                width: 100%;
+            }
+        }
+    </style>
 </th:block>
 <th:block th:fragment="content">
     <div class="container douban">
@@ -11,16 +27,15 @@
             <th:block th:replace="~{modules/inc/nav}" />
             <div class="content">
                 <article>
-                    <h2>豆瓣 <span>Douban.</span></h2>
+                    <h2>装备 <span>Equipment.</span></h2>
                     <div class="post-content">
-                        <th:block th:replace="~{plugin:plugin-douban:modules/douban}"></th:block>
+                        <th:block th:replace="~{plugin:equipment:modules/equipment}"></th:block>
                     </div>
                 </article>
                 <th:block th:replace="~{modules/aside}" />
             </div>
         </main>
     </div>
-    <th:block th:replace="~{plugin:plugin-douban:modules/script}"></th:block>
 </th:block>
 
 </html>

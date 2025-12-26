@@ -20,6 +20,7 @@ iEmo 主题支持以下 Halo 插件：
 - [X] 友情链接（/links）：https://halo.run/store/apps/app-hfbQg
 - [X] 豆瓣（/douban）：https://www.halo.run/store/apps/app-srBOL
 - [X] 瞬间（/moments）：https://halo.run/store/apps/app-SnwWD
+- [x] 装备管理（/equipments）(https://github.com/chengzhongxue/plugin-equipment)
 
 为了获得更好的体验，你还可以安装以下插件（如果需要）：
 - highlight.js 代码高亮：https://halo.run/store/apps/app-sqpgf
@@ -33,6 +34,7 @@ iEmo 主题支持以下 Halo 插件：
 - [x] [友情链接](https://github.com/halo-sigs/plugin-links)（插件）
 - [x] [豆瓣](https://github.com/chengzhongxue/plugin-douban)（插件）
 - [x] [瞬间](https://github.com/halo-sigs/plugin-moments)（插件）
+- [x] [装备管理](https://github.com/chengzhongxue/plugin-equipment)
 - [x] 其他功能
 
 ### TODO

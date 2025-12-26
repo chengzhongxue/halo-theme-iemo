@@ -7,7 +7,7 @@ spec:
     - group: basic
       label: 基础设置
       formSchema:
-        - $formkit: checkbox
+        - $formkit: switch
           name: iemo_auto_load
           label: 自动加载内容
           value: false
@@ -78,7 +78,7 @@ spec:
           name: iemo_icp_gov
           label: 公网安备号
           help: 填写公网安备号，没有请留空
-        - $formkit: checkbox
+        - $formkit: switch
           name: iemo_upyun
           label: 又拍云联盟
           value: false          
@@ -96,7 +96,9 @@ spec:
         - $formkit: attachment
           name: iemo_cover_author
           label: 个人背景
-          help: 显示在侧边栏 
+          help: 显示在侧边栏
+          width: "15rem"
+          aspectRatio: "16/9"
           value: /themes/theme-iemo/assets/images/cover-author.jpg
           accepts:
             - "image/*"
@@ -110,13 +112,13 @@ spec:
           label: 个人描述
           help: 个人资料的描述
           value: 这家伙很懒，什么都没写
-        - $formkit: checkbox
+        - $formkit: switch
           name: iemo_aside_subpage
           id: iemo_aside_subpage
           label: 侧边栏附页
           value: false
           help: 可添加内容：菜单、评论、关于
-        - $formkit: checkbox
+        - $formkit: switch
           if: $get(iemo_aside_subpage).value
           name: iemo_aside_comments
           id: iemo_aside_comments
@@ -135,10 +137,15 @@ spec:
           height: 200px
           language: html
           help: 位于侧边栏附页，填写文本，可用于对博客或自己的介绍等
-        - $formkit: repeater
+        - $formkit: array
           name: socialMedia
           label: 社交媒体
           value: [ ]
+          itemLabels:
+            - type: text
+              label: $value.text
+            - type: text
+              label: $value.url
           children:
             - $formkit: text
               name: icon
@@ -156,10 +163,12 @@ spec:
         - $formkit: attachment
           name: iemo_cover_post
           label: 文章默认封面
+          width: "15rem"
+          aspectRatio: "16/9"
           value: /themes/theme-iemo/assets/images/random/cover-post-1.jpg
           accepts:
             - "image/*"
-        - $formkit: checkbox
+        - $formkit: switch
           name: iemo_toc
           label: 文章目录Toc
           value: true
@@ -169,6 +178,8 @@ spec:
         - $formkit: attachment
           name: iemo_cover_moment
           label: 封面
+          width: "15rem"
+          aspectRatio: "16/9"
           value: /themes/theme-iemo/assets/images/random/cover-post-1.jpg
           accepts:
             - "image/*"
@@ -182,7 +193,7 @@ spec:
           value:
             enable_comment: false
           children:
-            - $formkit: checkbox
+            - $formkit: switch
               name: enable_comment
               label: 启用评论
               help: "启用链接插件原生适配的评论组件，需要链接插件 >= 1.4.0 版本"
