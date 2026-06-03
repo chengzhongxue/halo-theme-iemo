@@ -7,14 +7,223 @@ spec:
     group: ""
     kind: MenuItem
   formSchema:
-    - $formkit: "text"
-      name: "icon"
-      label: "图标"
+    - $formkit: select
+      name: icon
+      label: 图标
+      value: ""
+      help: "为菜单项选择一个图标。带「内置」标记为主题自带的 iconfont 图标；其余来自 Tabler Icons (4000+)。"
+      options:
+        - value: ""
+          label: 无（仅显示文字）
 
+        # ===== 内置 iconfont（保持兼容，已配置过的菜单项继续可用） =====
+        - value: "iconfont icon-home"
+          label: 内置 · 首页
+        - value: "iconfont icon-folder"
+          label: 内置 · 分类
+        - value: "iconfont icon-hash"
+          label: 内置 · 标签
+        - value: "iconfont icon-archive"
+          label: 内置 · 归档
+        - value: "iconfont icon-message-square"
+          label: 内置 · 说说
+        - value: "iconfont icon-link"
+          label: 内置 · 链接
+        - value: "iconfont icon-bookmark"
+          label: 内置 · 收藏
+        - value: "iconfont icon-flag"
+          label: 内置 · 推荐
+        - value: "iconfont icon-map-pin"
+          label: 内置 · 位置
+        - value: "iconfont icon-file"
+          label: 内置 · 文件
+        - value: "iconfont icon-search"
+          label: 内置 · 搜索
+        - value: "iconfont icon-user"
+          label: 内置 · 用户
+        - value: "iconfont icon-grid"
+          label: 内置 · 网格
+        - value: "iconfont icon-layout"
+          label: 内置 · 布局
+        - value: "iconfont icon-anchor"
+          label: 内置 · 锚点
+        - value: "iconfont icon-activity"
+          label: 内置 · 动态
+        - value: "iconfont icon-message-circle"
+          label: 内置 · 评论
+        - value: "iconfont icon-clock"
+          label: 内置 · 时钟
 
+        # ===== Tabler · 导航与页面 =====
+        - value: "ti ti-home"
+          label: Tabler · 首页
+        - value: "ti ti-home-2"
+          label: Tabler · 首页（圆角）
+        - value: "ti ti-folder"
+          label: Tabler · 文件夹
+        - value: "ti ti-folders"
+          label: Tabler · 文件夹（多个）
+        - value: "ti ti-category"
+          label: Tabler · 分类
+        - value: "ti ti-hash"
+          label: Tabler · 标签 (#)
+        - value: "ti ti-tag"
+          label: Tabler · 标签（吊牌）
+        - value: "ti ti-tags"
+          label: Tabler · 多标签
+        - value: "ti ti-archive"
+          label: Tabler · 归档
+        - value: "ti ti-history"
+          label: Tabler · 历史
+        - value: "ti ti-calendar"
+          label: Tabler · 日历
+        - value: "ti ti-calendar-event"
+          label: Tabler · 日程
+        - value: "ti ti-clock"
+          label: Tabler · 时钟
+        - value: "ti ti-bookmark"
+          label: Tabler · 书签
+        - value: "ti ti-bookmarks"
+          label: Tabler · 多书签
+        - value: "ti ti-link"
+          label: Tabler · 链接
+        - value: "ti ti-external-link"
+          label: Tabler · 外链
+        - value: "ti ti-rss"
+          label: Tabler · RSS
 
+        # ===== Tabler · 内容与媒体 =====
+        - value: "ti ti-article"
+          label: Tabler · 文章
+        - value: "ti ti-news"
+          label: Tabler · 资讯
+        - value: "ti ti-book"
+          label: Tabler · 书
+        - value: "ti ti-book-2"
+          label: Tabler · 书（合上）
+        - value: "ti ti-notebook"
+          label: Tabler · 笔记本
+        - value: "ti ti-pencil"
+          label: Tabler · 铅笔
+        - value: "ti ti-edit"
+          label: Tabler · 编辑
+        - value: "ti ti-quote"
+          label: Tabler · 引用
+        - value: "ti ti-photo"
+          label: Tabler · 照片
+        - value: "ti ti-camera"
+          label: Tabler · 相机
+        - value: "ti ti-video"
+          label: Tabler · 视频
+        - value: "ti ti-music"
+          label: Tabler · 音乐
+        - value: "ti ti-headphones"
+          label: Tabler · 耳机
+        - value: "ti ti-microphone"
+          label: Tabler · 麦克风
+        - value: "ti ti-movie"
+          label: Tabler · 电影
 
+        # ===== Tabler · 交互与社交 =====
+        - value: "ti ti-message"
+          label: Tabler · 消息
+        - value: "ti ti-message-circle"
+          label: Tabler · 圆形消息
+        - value: "ti ti-messages"
+          label: Tabler · 多条消息
+        - value: "ti ti-bell"
+          label: Tabler · 铃铛
+        - value: "ti ti-mail"
+          label: Tabler · 邮件
+        - value: "ti ti-send"
+          label: Tabler · 发送
+        - value: "ti ti-share"
+          label: Tabler · 分享
+        - value: "ti ti-heart"
+          label: Tabler · 红心
+        - value: "ti ti-star"
+          label: Tabler · 星
+        - value: "ti ti-thumb-up"
+          label: Tabler · 点赞
+        - value: "ti ti-flame"
+          label: Tabler · 火热
+        - value: "ti ti-coffee"
+          label: Tabler · 咖啡
+        - value: "ti ti-rocket"
+          label: Tabler · 火箭
+        - value: "ti ti-flag"
+          label: Tabler · 旗帜
 
-          
+        # ===== Tabler · 工具与系统 =====
+        - value: "ti ti-search"
+          label: Tabler · 搜索
+        - value: "ti ti-settings"
+          label: Tabler · 设置
+        - value: "ti ti-tool"
+          label: Tabler · 工具
+        - value: "ti ti-tools"
+          label: Tabler · 多工具
+        - value: "ti ti-dashboard"
+          label: Tabler · 仪表盘
+        - value: "ti ti-layout-dashboard"
+          label: Tabler · 仪表板（卡片）
+        - value: "ti ti-layout-grid"
+          label: Tabler · 网格布局
+        - value: "ti ti-list"
+          label: Tabler · 列表
+        - value: "ti ti-menu-2"
+          label: Tabler · 菜单
+        - value: "ti ti-user"
+          label: Tabler · 用户
+        - value: "ti ti-users"
+          label: Tabler · 多用户
+        - value: "ti ti-id"
+          label: Tabler · ID 卡
+        - value: "ti ti-key"
+          label: Tabler · 钥匙
+        - value: "ti ti-lock"
+          label: Tabler · 锁
+        - value: "ti ti-shield"
+          label: Tabler · 盾牌
+        - value: "ti ti-database"
+          label: Tabler · 数据库
+        - value: "ti ti-server"
+          label: Tabler · 服务器
+        - value: "ti ti-cloud"
+          label: Tabler · 云
+        - value: "ti ti-download"
+          label: Tabler · 下载
+        - value: "ti ti-upload"
+          label: Tabler · 上传
 
-
+        # ===== Tabler · 装饰 / 趣味 =====
+        - value: "ti ti-bulb"
+          label: Tabler · 灯泡
+        - value: "ti ti-leaf"
+          label: Tabler · 叶子
+        - value: "ti ti-tree"
+          label: Tabler · 树
+        - value: "ti ti-mountain"
+          label: Tabler · 山
+        - value: "ti ti-sun"
+          label: Tabler · 太阳
+        - value: "ti ti-moon"
+          label: Tabler · 月亮
+        - value: "ti ti-cloud-rain"
+          label: Tabler · 雨
+        - value: "ti ti-snowflake"
+          label: Tabler · 雪花
+        - value: "ti ti-sparkles"
+          label: Tabler · 闪烁
+        - value: "ti ti-wand"
+          label: Tabler · 魔法棒
+        - value: "ti ti-gift"
+          label: Tabler · 礼物
+        - value: "ti ti-cake"
+          label: Tabler · 蛋糕
+        - value: "ti ti-pizza"
+          label: Tabler · 披萨
+        - value: "ti ti-paw"
+          label: Tabler · 爪印
+        - value: "ti ti-ghost"
+          label: Tabler · 幽灵
