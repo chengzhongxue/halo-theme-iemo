@@ -147,9 +147,143 @@ spec:
             - type: text
               label: $value.url
           children:
-            - $formkit: text
+            - $formkit: select
               name: icon
               label: 图标
+              value: "ti ti-link"
+              help: "「内置」为主题原生图标，其余为 Tabler Icons (4000+)。"
+              options:
+                # ===== 内置 iconfont（保持兼容） =====
+                - value: "iconfont icon-QQ"
+                  label: 内置 · QQ
+                - value: "iconfont icon-weixin"
+                  label: 内置 · 微信
+                - value: "iconfont icon-github"
+                  label: 内置 · GitHub
+                - value: "iconfont icon-gitee"
+                  label: 内置 · Gitee
+                - value: "iconfont icon-bilibili-line"
+                  label: 内置 · Bilibili
+                - value: "iconfont icon-Youtube-fill"
+                  label: 内置 · YouTube
+                - value: "iconfont icon-tuitetwitter43"
+                  label: 内置 · Twitter
+                - value: "iconfont icon-telegram"
+                  label: 内置 · Telegram
+                - value: "iconfont icon-link"
+                  label: 内置 · 通用链接
+
+                # ===== Tabler · 社交品牌 =====
+                - value: "ti ti-brand-github"
+                  label: Tabler · GitHub
+                - value: "ti ti-brand-gitlab"
+                  label: Tabler · GitLab
+                - value: "ti ti-brand-bitbucket"
+                  label: Tabler · Bitbucket
+                - value: "ti ti-brand-wechat"
+                  label: Tabler · 微信
+                - value: "ti ti-brand-weibo"
+                  label: Tabler · 微博
+                - value: "ti ti-brand-tencent-qq"
+                  label: Tabler · QQ
+                - value: "ti ti-brand-douban"
+                  label: Tabler · 豆瓣
+                - value: "ti ti-brand-zhihu"
+                  label: Tabler · 知乎
+                - value: "ti ti-brand-bilibili"
+                  label: Tabler · Bilibili
+                - value: "ti ti-brand-youtube"
+                  label: Tabler · YouTube
+                - value: "ti ti-brand-twitch"
+                  label: Tabler · Twitch
+                - value: "ti ti-brand-tiktok"
+                  label: Tabler · TikTok
+                - value: "ti ti-brand-x"
+                  label: Tabler · X (Twitter)
+                - value: "ti ti-brand-twitter"
+                  label: Tabler · Twitter（旧）
+                - value: "ti ti-brand-telegram"
+                  label: Tabler · Telegram
+                - value: "ti ti-brand-discord"
+                  label: Tabler · Discord
+                - value: "ti ti-brand-slack"
+                  label: Tabler · Slack
+                - value: "ti ti-brand-whatsapp"
+                  label: Tabler · WhatsApp
+                - value: "ti ti-brand-messenger"
+                  label: Tabler · Messenger
+                - value: "ti ti-brand-line"
+                  label: Tabler · LINE
+                - value: "ti ti-brand-skype"
+                  label: Tabler · Skype
+                - value: "ti ti-brand-zoom"
+                  label: Tabler · Zoom
+                - value: "ti ti-brand-facebook"
+                  label: Tabler · Facebook
+                - value: "ti ti-brand-instagram"
+                  label: Tabler · Instagram
+                - value: "ti ti-brand-linkedin"
+                  label: Tabler · LinkedIn
+                - value: "ti ti-brand-pinterest"
+                  label: Tabler · Pinterest
+                - value: "ti ti-brand-reddit"
+                  label: Tabler · Reddit
+                - value: "ti ti-brand-tumblr"
+                  label: Tabler · Tumblr
+                - value: "ti ti-brand-snapchat"
+                  label: Tabler · Snapchat
+                - value: "ti ti-brand-mastodon"
+                  label: Tabler · Mastodon
+                - value: "ti ti-brand-threads"
+                  label: Tabler · Threads
+                - value: "ti ti-brand-bluesky"
+                  label: Tabler · Bluesky
+
+                # ===== Tabler · 媒体 / 工具 =====
+                - value: "ti ti-brand-spotify"
+                  label: Tabler · Spotify
+                - value: "ti ti-brand-apple"
+                  label: Tabler · Apple
+                - value: "ti ti-brand-google"
+                  label: Tabler · Google
+                - value: "ti ti-brand-google-drive"
+                  label: Tabler · Google Drive
+                - value: "ti ti-brand-dropbox"
+                  label: Tabler · Dropbox
+                - value: "ti ti-brand-notion"
+                  label: Tabler · Notion
+                - value: "ti ti-brand-figma"
+                  label: Tabler · Figma
+                - value: "ti ti-brand-codepen"
+                  label: Tabler · CodePen
+                - value: "ti ti-brand-codesandbox"
+                  label: Tabler · CodeSandbox
+                - value: "ti ti-brand-stackoverflow"
+                  label: Tabler · Stack Overflow
+                - value: "ti ti-brand-medium"
+                  label: Tabler · Medium
+                - value: "ti ti-brand-juejin"
+                  label: Tabler · 掘金
+                - value: "ti ti-brand-steam"
+                  label: Tabler · Steam
+                - value: "ti ti-brand-twitch"
+                  label: Tabler · Twitch
+
+                # ===== 通用联系方式 =====
+                - value: "ti ti-mail"
+                  label: Tabler · 邮件
+                - value: "ti ti-phone"
+                  label: Tabler · 电话
+                - value: "ti ti-rss"
+                  label: Tabler · RSS
+                - value: "ti ti-link"
+                  label: Tabler · 通用链接
+                - value: "ti ti-world"
+                  label: Tabler · 网站
+                - value: "ti ti-message-circle"
+                  label: Tabler · 留言
+                - value: "ti ti-map-pin"
+                  label: Tabler · 位置
             - $formkit: text
               name: name
               label: 名称
