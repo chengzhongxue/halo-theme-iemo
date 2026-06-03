@@ -12,6 +12,15 @@
     <link rel="stylesheet" th:href="@{/assets/css/style.css?v={version}(version=${theme.spec.version})}">
     <link rel="stylesheet" th:href="@{/assets/static/iconfont/iconfont.css?v={version}(version=${theme.spec.version})}">
     <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('iemo-width-mode') === 'full') {
+                    document.documentElement.setAttribute('data-width-mode', 'full');
+                }
+            } catch (e) {}
+        })();
+    </script>
     <link rel="stylesheet"
         th:href="@{/assets/static/nprogress/nprogress.css}">
     <style type="text/css" th:inline="css" th:if="${not #strings.isEmpty(theme.config.basic.iemo_page_animation)}">
