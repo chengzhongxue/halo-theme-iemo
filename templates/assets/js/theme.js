@@ -279,3 +279,72 @@ async function role() {
 
 
 role();
+
+
+// 全宽 / 中宽 切换
+(function() {
+  var STORAGE_KEY = 'iemo-width-mode';
+  var FULL = 'full';
+  var $html = $(document.documentElement);
+  var $container = $('.container');
+  var $btn = $('#width-toggle-btn');
+
+  function apply(mode) {
+    if (mode === FULL) {
+      $container.addClass('full-width');
+      $btn.addClass('active');
+      $html.attr('data-width-mode', FULL);
+    } else {
+      $container.removeClass('full-width');
+      $btn.removeClass('active');
+      $html.removeAttr('data-width-mode');
+    }
+  }
+
+  apply($html.attr('data-width-mode') === FULL ? FULL : '');
+
+  $btn.on('click', function(e) {
+    e.stopPropagation();
+    var next = $container.hasClass('full-width') ? '' : FULL;
+    if (next === FULL) {
+      localStorage.setItem(STORAGE_KEY, FULL);
+    } else {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    apply(next);
+  });
+})();
+
+
+// 首页 · 紧凑卡片视图切换
+(function() {
+  var STORAGE_KEY = 'iemo-home-layout';
+  var COMPACT = 'compact';
+  var $btn = $('#layout-toggle-btn');
+  var $postParts = $('.home .post-part');
+
+  if (!$btn.length) return;
+
+  function apply(mode) {
+    if (mode === COMPACT) {
+      $postParts.addClass('compact');
+      $btn.addClass('active');
+    } else {
+      $postParts.removeClass('compact');
+      $btn.removeClass('active');
+    }
+  }
+
+  apply(localStorage.getItem(STORAGE_KEY) === COMPACT ? COMPACT : '');
+
+  $btn.on('click', function(e) {
+    e.stopPropagation();
+    var next = $postParts.first().hasClass('compact') ? '' : COMPACT;
+    if (next === COMPACT) {
+      localStorage.setItem(STORAGE_KEY, COMPACT);
+    } else {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    apply(next);
+  });
+})();
